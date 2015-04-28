@@ -2,7 +2,8 @@
 
 void getTerminalDimensions()
 {
-	if(system("python/dist/getTerminalDimensions") == -1)
+	
+	if(system(terminalDimensionsExecutable) == -1)
 	{
 		puts("Error getting terminal dimensions!");
 	}
@@ -22,6 +23,15 @@ void getTerminalDimensions()
 }
 void continuouslyUpdateInfo()
 {
+	#ifdef _WIN32
+		memset(terminalDimensionsExecutable,'\0',50);
+		strcpy(terminalDimensionsExecutable,"python/dist/getTerminalDimensions.exe");
+	#else
+	#ifdef __gnu_linux__
+		memset(terminalDimensionsExecutable,'\0',50);
+		strcpy(terminalDimensionsExecutable,"python/dist/getTerminalDimensions");	
+	#endif
+	#endif
 	getTerminalDimensions();
 	printf("Rows: %d Columns: %d\n", terminalRows, terminalColumns);
 }
