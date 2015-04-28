@@ -2,7 +2,7 @@ terminal_commander: src/main.c src/getTerminalDimensions.py src/terminal_info.c 
 	 gcc  src/main.c src/terminal_info.c -g -o bin/terminal_commander -Iinclude 
 	 echo "Compiled C Source " 
 	 cxfreeze src/getTerminalDimensions.py --target-name=getTerminalDimensions --target-dir=bin 
-	 cp src/python/getTerminalDimensions.py bin
+	 cp src/getTerminalDimensions.py bin
 	 echo "'Compiled' Python Executable"
 
 windows: src/main.c src/getTerminalDimensions.py src/terminal_info.c include/terminal_info.h

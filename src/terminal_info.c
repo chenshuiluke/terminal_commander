@@ -29,7 +29,7 @@ void continuouslyUpdateInfo()
 	#else
 	#ifdef __gnu_linux__
 		memset(terminalDimensionsExecutable,'\0',50);
-		strcpy(terminalDimensionsExecutable,"getTerminalDimensions");	
+		strcpy(terminalDimensionsExecutable,"./getTerminalDimensions");	
 	#endif
 	#endif
 	getTerminalDimensions();
