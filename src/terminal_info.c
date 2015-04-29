@@ -25,11 +25,11 @@ void continuouslyUpdateInfo()
 {
 	#ifdef _WIN32
 		memset(terminalDimensionsExecutable,'\0',50);
-		strcpy(terminalDimensionsExecutable,"python/dist/getTerminalDimensions.exe");
+		strcpy(terminalDimensionsExecutable,"getTerminalDimensions.exe");
 	#else
 	#ifdef __gnu_linux__
 		memset(terminalDimensionsExecutable,'\0',50);
-		strcpy(terminalDimensionsExecutable,"python/dist/getTerminalDimensions");	
+		strcpy(terminalDimensionsExecutable,"getTerminalDimensions");	
 	#endif
 	#endif
 	getTerminalDimensions();
