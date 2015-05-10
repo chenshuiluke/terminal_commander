@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <ncurses.h>
+#ifdef __gnu_linux__
+	#include <ncurses.h>
+#else
+#ifdef _WIN32
+	#include <curses.h>
+#endif
+#endif
 
 int terminalColumns;
 int terminalRows;
