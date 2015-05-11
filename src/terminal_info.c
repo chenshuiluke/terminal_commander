@@ -22,4 +22,5 @@ void continuouslyUpdateInfo()
 		getTerminalDimensions();
 		printw("Rows: %d Columns: %d\n", terminalRows, terminalColumns);
 	}
+	refresh();
 }
