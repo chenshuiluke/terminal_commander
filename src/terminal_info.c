@@ -8,7 +8,7 @@ void getTerminalDimensions()
 void continuouslyUpdateInfo()
 {
 	int counter = 0;
-	for(counter = 0; counter < 1000; counter++)
+	for(counter = 0; counter < 10; counter++)
 	{
 		#ifdef _WIN32
 			memset(terminalDimensionsExecutable,'\0',50);
