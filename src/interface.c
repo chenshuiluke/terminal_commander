@@ -62,7 +62,7 @@ void printDocument()
 	printw("Document Size: %d\n", documentSize);
 	for(counter = 0; counter < documentSize; counter++)
 	{
-		printw("%c",(char)document[counter]);
+		printw("%c - %d\n",(char)document[counter], document[counter]);
 	}
 	refresh();
 
