@@ -1,12 +1,33 @@
 #include "interface.h"
 uint8_t * document = NULL;
 int documentSize = 0;
+int getFileSize(char file[])
+{
+	FILE * reader;
+	char temp;
+	unsigned int numRead =0;
+	if(!(reader = fopen(file,"rb")))
+	{
+		printw("Error opening file to get its size\n");
+		return 0;
+	}
+	else
+	{
+		while(!feof(reader))
+		{
+			fread(&temp,sizeof(unsigned char),1,reader);
+			numRead++;
+		}
+	}
+	return numRead;
+}
 void testForUI()
 {
 	FILE * tester = NULL;
 	if((tester = fopen(UI_FILE,"r")) == NULL)
 	{
-		perror("Unrecoverable error occurred when trying to read UI file 'ui.xml': ");
+		printw("Unrecoverable error occurred when trying to read UI file 'ui.xml'\n");
+		refresh();
 		abort();
 	}
 }
@@ -16,36 +37,32 @@ void readUIFile()
 	documentSize = 0;
 	FILE * reader = NULL;
 	uint8_t * tempPtr = NULL;
+	int uiFileSize = 0;
 	if((reader = fopen("ui.xml","rb")) == NULL)
 	{
-		perror("Error opening ui.xml! ");	
+		printw("Error opening ui.xml!\n");	
 	}
-	document = malloc(sizeof(uint8_t));
-	while((fread(&document[documentSize],sizeof(uint8_t),1,reader)) == sizeof(uint8_t))
+	uiFileSize = getFileSize(UI_FILE);
+	if(uiFileSize > 0)
+		uiFileSize--;
+	printw("%d\n",uiFileSize);
+	document = malloc(sizeof(uint8_t)*uiFileSize);
+	if(!fread(document,sizeof(uint8_t),uiFileSize,reader))
 	{
-		tempPtr = realloc(document,sizeof(uint8_t)*(documentSize+1));
-		if(!tempPtr)
-		{
-			perror("Error allocating memory while reading document!");	
-		}
-		else
-		{
-			document = tempPtr;
-			tempPtr = NULL;
-			documentSize++;
-		}
+		printw("Error occurred reading ui.xml\n");
 	}
-	if(ferror(reader))
+	else
 	{
-		perror("Error occurred reading ui.xml: ");
+		documentSize=uiFileSize;
 	}
 }
 void printDocument()
 {
 	int counter = 0;
+	printw("Document Size: %d\n", documentSize);
 	for(counter = 0; counter < documentSize; counter++)
 	{
-		printw("%c",document[counter]);
+		printw("%u",document[counter]);
 	}
 	refresh();
 
