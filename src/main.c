@@ -16,8 +16,8 @@ int main()
 	continuouslyUpdateInfo();
 	refresh();
 	printDocument();
-	while(1)
 	getch();
 	endwin();
+	clearAll();
 	return 0;
 }

@@ -50,3 +50,7 @@ void printDocument()
 	refresh();
 
 }
+void clearAll()
+{
+	free(document);
+}

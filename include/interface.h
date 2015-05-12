@@ -14,5 +14,6 @@ extern int documentSize;
 void testForUI();
 void readUIFile();
 void printDocument();
+void clearAll();
 
 #endif
