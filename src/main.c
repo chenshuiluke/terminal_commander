@@ -13,7 +13,12 @@ int main()
 	initscr();
 	setvbuf(stdout, NULL, _IONBF, 0);
  	scrollok(stdscr, TRUE);
-	testForUI();
+	if(setUIFile("ui.xml"))
+	{
+		printw("Specified UI file doesn't exist: %s!\n", attemptedFile);
+		refresh();
+		abort();
+	}
 	readUIFile();
 	continuouslyUpdateInfo();
 	refresh();

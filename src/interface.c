@@ -1,6 +1,19 @@
 #include "interface.h"
 uint8_t * document = NULL;
 int documentSize = 0;
+int setUIFile(char file[])
+{
+	strncpy(attemptedFile,file,sizeof(file)/sizeof(file[0]));
+	if(!testUIFile(file))
+	{
+		strncpy(uiFile,attemptedFile,sizeof(file)/sizeof(file[0]));
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
 int getFileSize(char file[])
 {
 	FILE * reader;
@@ -21,15 +34,14 @@ int getFileSize(char file[])
 	}
 	return numRead;
 }
-void testForUI()
+int testUIFile()
 {
 	FILE * tester = NULL;
-	if((tester = fopen(UI_FILE,"r")) == NULL)
+	if((tester = fopen(uiFile,"r")) == NULL)
 	{
-		printw("Unrecoverable error occurred when trying to read UI file 'ui.xml'\n");
-		refresh();
-		abort();
+		return 0;
 	}
+	else return 1;
 }
 void readUIFile()
 {
@@ -43,7 +55,7 @@ void readUIFile()
 	{
 		printw("Error opening ui.xml!\n");	
 	}
-	uiFileSize = getFileSize(UI_FILE);
+	uiFileSize = getFileSize(uiFile);
 	if(uiFileSize > 0)
 		uiFileSize--;
 	printw("%d\n",uiFileSize);
