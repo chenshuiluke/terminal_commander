@@ -12,6 +12,7 @@ int main()
 {
 	initscr();
 	setvbuf(stdout, NULL, _IONBF, 0);
+ 	scrollok(stdscr, TRUE);
 	testForUI();
 	readUIFile();
 	continuouslyUpdateInfo();
