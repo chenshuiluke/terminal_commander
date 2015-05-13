@@ -37,6 +37,7 @@ void readUIFile()
 	documentSize = 0;
 	FILE * reader = NULL;
 	uint8_t * tempPtr = NULL;
+	int counter = 0;
 	int uiFileSize = 0;
 	if((reader = fopen("ui.xml","rb")) == NULL)
 	{
@@ -54,6 +55,15 @@ void readUIFile()
 	else
 	{
 		documentSize=uiFileSize;
+		for(counter = 0; counter < documentSize; counter++)
+		{
+			if(document[counter] == '\r')
+			{
+				memcpy(document+counter-1,document+counter+1,(documentSize-1-counter) * sizeof(uint8_t));
+				documentSize--;
+				counter--;
+			}
+		}
 	}
 }
 void printDocument()
@@ -62,7 +72,8 @@ void printDocument()
 	printw("Document Size: %d\n", documentSize);
 	for(counter = 0; counter < documentSize; counter++)
 	{
-		printw("%c - %d",(char)document[counter], document[counter]);
+		printw("%c",(char)document[counter]);
+		fflush(stdout);
 	}
 	refresh();
 

@@ -11,6 +11,7 @@
 int main()
 {
 	initscr();
+	setvbuf(stdout, NULL, _IOLBF, 0);
 	testForUI();
 	readUIFile();
 	continuouslyUpdateInfo();
