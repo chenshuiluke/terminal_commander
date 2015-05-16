@@ -8,3 +8,4 @@
 #endif
 #include "interface.h"
 #include "terminal_info.h"
+#include "draw.h"
