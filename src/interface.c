@@ -1,6 +1,7 @@
 #include "interface.h"
-uint8_t * document = NULL;
-int documentSize = 0;
+xmlDocPtr document = NULL;
+xmlNodePtr current = NULL;
+
 int setUIFile(char file[])
 {
 	strcpy(attemptedFile,file);
@@ -50,45 +51,30 @@ int testUIFile()
 }
 void readUIFile()
 {
-	document = NULL;
-	documentSize = 0;
-	FILE * reader = NULL;
-	uint8_t * tempPtr = NULL;
-	int counter = 0;
-	int uiFileSize = 0;
-	if((reader = fopen(uiFile,"rb")) == NULL)
+	document = xmlParseFile(uiFile);
+	if (document == NULL ) 
 	{
-		printw("Error opening %s!\n", uiFile);	
-		refresh();
+		fprintf(stderr,"Document not parsed successfully. \n");
+		return;
 	}
-	uiFileSize = getFileSize(uiFile);
-	if(uiFileSize > 0)
-		uiFileSize--;
-	printw("%d\n",uiFileSize);
-	document = malloc(sizeof(uint8_t)*uiFileSize);
-	if(!fread(document,sizeof(uint8_t),uiFileSize,reader))
+	current = xmlDocGetRootElement(document);
+	if(current == NULL)
 	{
-		printw("Error occurred reading ui.xml\n");
+		fprintf(stderr,"empty document\n");
+		xmlFreeDoc(document);
+		return;
 	}
-	else
+	if (xmlStrcmp(current->name, (const xmlChar *) "ui"))
 	{
-		documentSize=uiFileSize;
-		for(counter = 0; counter < documentSize; counter++)
-		{
-			if(document[counter] == '\r')
-			{
-				memcpy(document+counter-1,document+counter+1,(documentSize-1-counter) * sizeof(uint8_t));
-				documentSize--;
-				counter--;
-			}
-		}
+		fprintf(stderr,"document of the wrong type, root node != ui");
+		xmlFreeDoc(document);
+		return;
 	}
-	fclose(reader);
 }
+/*
 void printDocument()
 {
 	int counter = 0;
-	printw("Document Size: %d\n", documentSize);
 	for(counter = 0; counter < documentSize; counter++)
 	{
 		printw("%c",(char)document[counter]);
@@ -97,6 +83,7 @@ void printDocument()
 	refresh();
 
 }
+*/
 void clearAll()
 {
 	free(document);
