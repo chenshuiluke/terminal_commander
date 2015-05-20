@@ -1,6 +1,6 @@
 #include "draw.h"
 
-void rectangle(int row, int col,int xPos, int yPos,int foreground, int background)
+void rectangle(int row, int col,int xPos, int yPos,int foreground, int background, char character)
 {
 	int height = 0;
 	int width = 0;
@@ -10,7 +10,7 @@ void rectangle(int row, int col,int xPos, int yPos,int foreground, int backgroun
 		for(width = 0; width < col; width++)
 		{
 			move(yPos+height, xPos+width);
-			printw("*");
+			printw("%c", character);
 		}
 	}
 	setColorForShape(foreground, background);

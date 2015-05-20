@@ -109,8 +109,9 @@ void scanUIFile()
 		if(!xmlStrcmp(current->name,(const xmlChar *) "rectangle"))		
 		{
 			//http://xmlsoft.org/tutorial/ar01s08.html
-			xmlChar * height, * width, * x, * y, * foreground, * background;
+			xmlChar * height, * width, * x, * y, * foreground, * background, * character;
 			height = NULL; width = NULL; x = NULL; y = NULL; foreground = NULL; background = NULL;
+			character = NULL;
 
 			height = xmlGetProp(current,"height");	
 			width = xmlGetProp(current,"width");
@@ -118,9 +119,10 @@ void scanUIFile()
 			y = xmlGetProp(current,"y");
 			foreground = xmlGetProp(current, "foreground");
 			background = xmlGetProp(current, "background");
-			if(height && width && x && y && foreground && background)
+			character = xmlGetProp(current,"character");
+			if(height && width && x && y && foreground && background && character)
 			{
-				rectangle(atoi((char *)height),  atoi((char *)width),  atoi((char *)x),  atoi((char *)y),  atoi((char *)foreground),  atoi((char *)background));	
+				rectangle(atoi((char *)height),  atoi((char *)width),  atoi((char *)x),  atoi((char *)y),  atoi((char *)foreground),  atoi((char *)background), ((char *)character)[0]);	
 			}
 			else
 			{
