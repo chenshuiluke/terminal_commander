@@ -17,10 +17,11 @@ install: bin/linux/libterminal_commander.so
 	sudo cp bin/linux/libterminal_commander.so /usr/lib
 win_lib: src/main.c src/terminal_info.c src/interface.c src/draw.c include/terminal_info.h include/interface.h include/terminal_commander.h include/draw.h
 	
-	gcc -Wall -c -fPIC src/terminal_info.c src/interface.c src/draw.c /src/ -g -Iinclude -I/src/
-	gcc -Wall -shared terminal_info.o interface.o  draw.o -o bin/win/libterminal_commander.dll -lpdcurses
+	gcc -Wall -c -fPIC src/terminal_info.c src/interface.c src/draw.c -g -Iinclude -I/src/ -Iother
+	gcc -Wall -shared terminal_info.o interface.o  draw.o -o bin/win/libterminal_commander.dll -lpdcurses -lxml2 -Lother -Iother -Iother/
 	del *.o
 	-robocopy "bin/" "bin/win/" "ui.xml"
+	-robocopy "other" "bin/win/"
 	
 	echo "Compiled C Source " 
 

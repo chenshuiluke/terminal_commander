@@ -71,9 +71,10 @@ void readUIFile()
 		return;
 	}
 }
-/*
+
 void printDocument()
 {
+	/*
 	int counter = 0;
 	for(counter = 0; counter < documentSize; counter++)
 	{
@@ -81,9 +82,11 @@ void printDocument()
 		fflush(stdout);
 	}
 	refresh();
+		
+	*/
 
 }
-*/
+
 void clearAll()
 {
 	free(document);
