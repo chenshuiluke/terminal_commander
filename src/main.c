@@ -16,9 +16,9 @@ int main()
 	readUIFile();
 	continuouslyUpdateInfo();
 	refresh();
-	readUIFile();
+	scanUIFile();
 //	printDocument();
-	square(8,8,5,7,COLOR_WHITE,COLOR_RED);
+	//rectangle(8,8,5,7,COLOR_WHITE,COLOR_RED);
 	getch();
 	endwin();
 //	clearAll();

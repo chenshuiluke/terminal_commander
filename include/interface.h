@@ -19,5 +19,5 @@ int testUIFile();
 void readUIFile();
 void printDocument();
 void clearAll();
-
+void scanUIFile();
 #endif

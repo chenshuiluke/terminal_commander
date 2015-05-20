@@ -1,6 +1,6 @@
 #include "draw.h"
 
-void square(int row, int col,int xPos, int yPos,int foreground, int background)
+void rectangle(int row, int col,int xPos, int yPos,int foreground, int background)
 {
 	int height = 0;
 	int width = 0;
@@ -19,6 +19,7 @@ void square(int row, int col,int xPos, int yPos,int foreground, int background)
 void setColorForShape(int foreground, int background)
 {
 	static int used = 0;
+	static int lastColourPair = 1;
 	if(!((foreground >= 0 && foreground <= 7) && (background >= 0 && background <= 7)))
 	{
 		printw("Foreground and background colours can only be a value from 0 up to 7\n");
@@ -29,9 +30,10 @@ void setColorForShape(int foreground, int background)
 	{
 		if(!used)
 		{
-			init_pair(1,foreground,background);
-			attron(COLOR_PAIR(1));
+			init_pair(lastColourPair,foreground,background);
+			attron(COLOR_PAIR(lastColourPair));
 			used = 1;
+			lastColourPair++;
 		}
 		else
 		{

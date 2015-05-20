@@ -20,7 +20,7 @@ void continuouslyUpdateInfo()
 		#endif
 		#endif
 		getTerminalDimensions();
-		printw("Rows: %d Columns: %d\n", terminalRows, terminalColumns);
+//		printw("Rows: %d Columns: %d\n", terminalRows, terminalColumns);
 	}
-	refresh();
+//	refresh();
 }

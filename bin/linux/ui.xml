@@ -1,8 +1,4 @@
-<Root>
-    <Hello>World</Hello>
-    <This>
-	<Is>:-)</Is>
-	<An>:-O</An>
-	<Example>:-D</Example>
-    </This>
-</Root>
+<ui>
+    <rectangle height="5" width = "900" x = "2" y = "3" foreground = "0" background = "6"></rectangle>
+    <rectangle height="5" width = "10" x = "2" y = "10" foreground = "2" background = "5"></rectangle>
+</ui>

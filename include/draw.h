@@ -5,5 +5,5 @@
 	#include <curses.h>
 #endif
 #endif
-void square(int row, int col, int xPos, int yPos, int foreground, int background);
+void rectangle(int row, int col, int xPos, int yPos, int foreground, int background);
 void setColorForShape(int foreground, int background);
