@@ -27,6 +27,6 @@ win_lib: src/main.c src/terminal_info.c src/interface.c src/draw.c include/termi
 
 win_test: src/main.c src/terminal_info.c src/interface.c src/draw.c include/terminal_info.h include/interface.h include/terminal_commander.h include/draw.h
 	
-	gcc -Wall src/main.c -Lbin/win -lterminal_commander -Iinclude -I/src/ -g -lpdcurses -o bin/win/test.exe
+	gcc -Wall src/main.c -Lbin/win -lterminal_commander -Iinclude -I/src/ -g -lpdcurses -o bin/win/test.exe -Iother -lxml2 -Lother
 	
 	echo "Compiled C Source " 
