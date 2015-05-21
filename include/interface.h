@@ -27,5 +27,6 @@ void readUIFile();
 void printDocument();
 void clearAll();
 void scanUIFile();
+void printUI(element node);
 void getChildren(element * node, xmlNodePtr current);
 #endif

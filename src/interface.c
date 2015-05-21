@@ -100,6 +100,7 @@ void getChildren(element * node, xmlNodePtr current)
 	(*node).numChildren = xmlChildElementCount(current);
 	if((*node).numChildren == 0)
 	{
+		(*node).xmlNode = current;
 		return;
 	}
 	else
@@ -112,9 +113,32 @@ void getChildren(element * node, xmlNodePtr current)
 		temp = temp->next;
 		while(temp)
 		{
-			(*node).children[0].xmlNode = temp;
-			(*node).children[0].parent = node;
+			(*node).children[count].xmlNode = temp;
+			(*node).children[count].parent = node;
+			getChildren(&((*node).children[count]), temp);
 			temp = temp->next;
+			count++;
+		}
+	}
+}
+void printUI(element node)
+{
+	int count = 0;
+	if(node.numChildren == 0)
+	{
+		return;
+	}
+	for(count = 0; count < node.numChildren; count++)
+	{
+		if(!(xmlStrcmp(node.children[count].xmlNode->name,(const xmlChar *) "rectangle")))	
+		{
+			rectangle(atoi((char *) xmlGetProp(node.children[count].xmlNode, "height")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "width")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "x")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "y")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "foreground")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "background")),
+			atoi((char *) xmlGetProp(node.children[count].xmlNode, "character")) );
 		}
 	}
 }
@@ -128,6 +152,7 @@ void scanUIFile()
 		return;
 	}
 	getChildren(&UI, current);	
+	printUI(UI);
 	int y;
 	/*
 	xmlNodePtr top = current;	
