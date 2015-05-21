@@ -2,4 +2,7 @@
     <rectangle height="5" width = "5" x = "0" y = "3" foreground = "0" background = "6" character = " "></rectangle>
     <rectangle height="5" width = "5" x = "6" y = "3" foreground = "2" background = "5" character = " "></rectangle>
     <rectangle height="5" width = "5" x = "12" y = "3" foreground = "1" background = "4" character = " "></rectangle>
+    <rectangle height="5" width = "5" x = "0" y = "6" foreground = "4" background = "2" character = " "></rectangle>
+    <rectangle height="5" width = "5" x = "6" y = "6" foreground = "2" background = "3" character = " "></rectangle>
+    <rectangle height="5" width = "5" x = "12" y = "6" foreground = "1" background = "7" character = " "></rectangle>
 </ui>

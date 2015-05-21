@@ -1,6 +1,7 @@
 #include "interface.h"
 xmlDocPtr document = NULL;
 xmlNodePtr current = NULL;
+xmlNodePtr temp = NULL;
 
 int setUIFile(char file[])
 {
@@ -93,16 +94,42 @@ void clearAll()
 {
 	free(document);
 }
+void getChildren(element * node, xmlNodePtr current)
+{
+	int count = 0;
+	(*node).numChildren = xmlChildElementCount(current);
+	if((*node).numChildren == 0)
+	{
+		return;
+	}
+	else
+	{
+		temp = xmlFirstElementChild(current);
+		(*node).children = calloc((*node).numChildren, sizeof(element));
+		(*node).children[0].xmlNode = temp;		
+		(*node).children[0].parent = node;
+		getChildren(&((*node).children[0]), temp);
+		temp = temp->next;
+		while(temp)
+		{
+			(*node).children[0].xmlNode = temp;
+			(*node).children[0].parent = node;
+			temp = temp->next;
+		}
+	}
+}
 void scanUIFile()
 {
-	current = xmlFirstElementChild(current);
+//	current = xmlFirstElementChild(current);
 	if(!current)
 	{
 		printw("Error processing file!");
 		refresh();
 		return;
 	}
-	
+	getChildren(&UI, current);	
+	int y;
+	/*
 	xmlNodePtr top = current;	
 	while(current)
 	{
@@ -132,4 +159,5 @@ void scanUIFile()
 		}
 		current = current -> next;
 	}
+	*/
 }

@@ -13,11 +13,19 @@ extern char attemptedFile[UI_FILE_SIZE]={'\0'}; //Name of the file that is teste
 
 extern xmlDocPtr document;
 extern xmlNodePtr current;
-
+typedef struct el
+{
+	int numChildren;
+	xmlNodePtr xmlNode;
+	struct el * parent;
+	struct el * children;
+}element;
+element UI;
 int setUIFile();
 int testUIFile();
 void readUIFile();
 void printDocument();
 void clearAll();
 void scanUIFile();
+void getChildren(element * node, xmlNodePtr current);
 #endif
