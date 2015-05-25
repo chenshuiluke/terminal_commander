@@ -16,11 +16,18 @@ extern xmlNodePtr current;
 typedef struct el
 {
 	int numChildren;
-	xmlNodePtr xmlNode;
+	int height;
+	int width;
+	int x;
+	int y;
+	int foreground;
+	int background;
 	struct el * parent;
 	struct el * children;
+	char character;
+	char type[50];
 }element;
-element UI;
+element UI={0,0,0,0,0,0,0,NULL,NULL};
 int setUIFile();
 int testUIFile();
 void readUIFile();
@@ -28,5 +35,21 @@ void printDocument();
 void clearAll();
 void scanUIFile();
 void printUI(element node);
-void getChildren(element * node, xmlNodePtr current);
+void getChildren(element * node,const xmlNodePtr current);
+#ifdef LINUX
+#include <unistd.h>
+#endif
+#ifdef WINDOWS
+#include <windows.h>
+#endif
+
+void mySleep(int sleepMs)
+{
+#ifdef __gnu_linux__
+    usleep(sleepMs * 1000);   // usleep takes sleep time in us (1 millionth of a second)
+    #endif
+    #ifdef _WIN32S
+        Sleep(sleepMs);
+#endif
+	}
 #endif

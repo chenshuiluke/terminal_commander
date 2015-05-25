@@ -1,7 +1,6 @@
 #include "interface.h"
 xmlDocPtr document = NULL;
 xmlNodePtr current = NULL;
-xmlNodePtr temp = NULL;
 
 int setUIFile(char file[])
 {
@@ -94,30 +93,40 @@ void clearAll()
 {
 	free(document);
 }
-void getChildren(element * node, xmlNodePtr current)
+void getChildren(element * node,const xmlNodePtr current)
 {
 	int count = 0;
+	xmlNodePtr temp = NULL;
+	xmlNodePtr tempCpy = NULL;
 	(*node).numChildren = xmlChildElementCount(current);
 	if((*node).numChildren == 0)
 	{
-		(*node).xmlNode = current;
 		return;
 	}
 	else
 	{
 		temp = xmlFirstElementChild(current);
 		(*node).children = calloc((*node).numChildren, sizeof(element));
-		(*node).children[0].xmlNode = temp;		
 		(*node).children[0].parent = node;
-		getChildren(&((*node).children[0]), temp);
-		temp = temp->next;
+//		getChildren(&((*node).children[0]), temp);
 		while(temp)
 		{
-			(*node).children[count].xmlNode = temp;
-			(*node).children[count].parent = node;
-			getChildren(&((*node).children[count]), temp);
+			if(!xmlStrcmp(temp->name,"rectangle"))
+			{
+				(*node).children[count].parent = node;
+				(*node).children[count].height = atoi((char *) xmlGetProp(temp, "height"));		
+				(*node).children[count].width = atoi((char *) xmlGetProp(temp, "width"));		
+				(*node).children[count].x = atoi((char *) xmlGetProp(temp, "x"));		
+				(*node).children[count].y = atoi((char *) xmlGetProp(temp, "y"));		
+				(*node).children[count].foreground = atoi((char *) xmlGetProp(temp, "foreground"));		
+				(*node).children[count].background = atoi((char *) xmlGetProp(temp, "background"));		
+				(*node).children[count].character = ((char *) xmlGetProp(temp, "character"))[0];		
+				strcpy((*node).children[count].type,temp->name);		
+				tempCpy = temp;
+				getChildren(&((*node).children[count]), temp);
+				count++;
+			}
 			temp = temp->next;
-			count++;
 		}
 	}
 }
@@ -130,15 +139,18 @@ void printUI(element node)
 	}
 	for(count = 0; count < node.numChildren; count++)
 	{
-		if(!(xmlStrcmp(node.children[count].xmlNode->name,(const xmlChar *) "rectangle")))	
+		if(!(xmlStrcmp(node.children[count].type,(const xmlChar *) "rectangle")))	
 		{
-			rectangle(atoi((char *) xmlGetProp(node.children[count].xmlNode, "height")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "width")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "x")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "y")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "foreground")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "background")),
-			atoi((char *) xmlGetProp(node.children[count].xmlNode, "character")) );
+			mySleep(1000);
+			rectangle(node.children[count].height,	
+			node.children[count].width,	
+			node.children[count].x,	
+			node.children[count].y,	
+			node.children[count].foreground,	
+			node.children[count].background,	
+			node.children[count].character);
+			refresh();
+			printUI(node.children[count]);
 		}
 	}
 }

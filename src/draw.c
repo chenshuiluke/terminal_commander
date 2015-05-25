@@ -2,17 +2,21 @@
 
 void rectangle(int row, int col,int xPos, int yPos,int foreground, int background, char character)
 {
+	static int count = 0;
 	int height = 0;
 	int width = 0;
 	setColorForShape(foreground, background);
+	//printw("%d x %d %d , %d\n", row,col,xPos,yPos); 
 	for(height = 0; height < row; height++)
 	{
 		for(width = 0; width < col; width++)
 		{
 			move(yPos+height, xPos+width);
-			printw("%c", character);
+			printw("%d", count);
 		}
+		printw("\n");
 	}
+	count++;
 	setColorForShape(foreground, background);
 }
 //http://tldp.org/HOWTO/NCURSES-Programming-HOWTO/color.html
