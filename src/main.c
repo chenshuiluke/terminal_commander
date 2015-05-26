@@ -21,6 +21,6 @@ int main()
 	//rectangle(8,8,5,7,COLOR_WHITE,COLOR_RED);
 	getch();
 	endwin();
-//	clearAll();
+	clearAll();
 	return 0;
 }

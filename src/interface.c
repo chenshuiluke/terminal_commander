@@ -92,7 +92,24 @@ void printDocument()
 
 void clearAll()
 {
-	free(document);
+	if(document)
+		xmlFreeDoc(document);
+	clearElements(UI);
+	
+}
+void clearElements(element node)
+{
+	int count = 0;
+	if(node.numChildren == 0)
+	{
+		return;
+	}
+	for(count = 0; count < node.numChildren; count++)
+	{
+		clearElements(node.children[count]);
+	}
+	free(node.children);
+	
 }
 void getChildren(element * node,const xmlNodePtr current)
 {
