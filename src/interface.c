@@ -1,6 +1,7 @@
 #include "interface.h"
 xmlDocPtr document = NULL;
 xmlNodePtr current = NULL;
+void * cleaner = NULL;
 
 int setUIFile(char file[])
 {
@@ -114,13 +115,40 @@ void getChildren(element * node,const xmlNodePtr current)
 			if(!xmlStrcmp(temp->name,"rectangle"))
 			{
 				(*node).children[count].parent = node;
-				(*node).children[count].height = atoi((char *) xmlGetProp(temp, "height"));		
-				(*node).children[count].width = atoi((char *) xmlGetProp(temp, "width"));		
-				(*node).children[count].x = atoi((char *) xmlGetProp(temp, "x"));		
-				(*node).children[count].y = atoi((char *) xmlGetProp(temp, "y"));		
-				(*node).children[count].foreground = atoi((char *) xmlGetProp(temp, "foreground"));		
-				(*node).children[count].background = atoi((char *) xmlGetProp(temp, "background"));		
-				(*node).children[count].character = ((char *) xmlGetProp(temp, "character"))[0];		
+
+				cleaner = (char *) xmlGetProp(temp, "height");		
+				(*node).children[count].height = atoi(cleaner);		
+				free(cleaner);
+
+				cleaner = (char *) xmlGetProp(temp, "width");		
+				(*node).children[count].width = atoi(cleaner);		
+				free(cleaner);
+
+
+				cleaner = (char *) xmlGetProp(temp, "x");		
+				(*node).children[count].x = atoi(cleaner);		
+				free(cleaner);
+
+
+				cleaner = (char *) xmlGetProp(temp, "y");		
+				(*node).children[count].y = atoi(cleaner);		
+				free(cleaner);
+
+
+				cleaner = (char *) xmlGetProp(temp, "foreground");		
+				(*node).children[count].foreground = atoi(cleaner);		
+				free(cleaner);
+
+
+				cleaner = (char *) xmlGetProp(temp, "background");		
+				(*node).children[count].background = atoi(cleaner);		
+				free(cleaner);
+
+
+				cleaner = (char *) xmlGetProp(temp, "character");		
+				(*node).children[count].character = ((char *)cleaner)[0];		
+				free(cleaner);
+
 				strcpy((*node).children[count].type,temp->name);		
 				tempCpy = temp;
 				getChildren(&((*node).children[count]), temp);
@@ -151,6 +179,7 @@ void printUI(element node)
 			node.children[count].character);
 			refresh();
 			printUI(node.children[count]);
+			addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
 		}
 	}
 }
@@ -197,4 +226,32 @@ void scanUIFile()
 		current = current -> next;
 	}
 	*/
+}
+void addToNumOccupied(int row, int col, int xPos, int yPos)
+{
+	int * temp = NULL;	
+	int additionalSize = row*col;
+	int height = 0;
+	int width = 0;
+	int counter = numOccupied;
+	int newSize = numOccupied+additionalSize+2;
+	temp = realloc(occupiedPositions, newSize*sizeof(int));
+	if(!temp)
+	{
+		perror("Error adding to number of occupied spaces array: ");
+		exit(1);
+	}
+	occupiedPositions = temp;
+	for(height = 0; height < row && counter < newSize; height++)
+	{
+		occupiedPositions[counter] = yPos+height;
+		counter++;
+		for(width = 0; width < col && counter < newSize; width++)
+		{
+			occupiedPositions[counter] = xPos+width;
+			numOccupied++;
+			counter++;
+		}
+	}
+
 }
