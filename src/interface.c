@@ -95,6 +95,10 @@ void clearAll()
 	if(document)
 		xmlFreeDoc(document);
 	clearElements(UI);
+	if(occupiedXPositions)
+		free(occupiedXPositions);
+	if(occupiedYPositions)
+		free(occupiedYPositions);
 	
 }
 void clearElements(element node)
@@ -175,6 +179,19 @@ void getChildren(element * node,const xmlNodePtr current)
 		}
 	}
 }
+int checkOccupied(int x, int y)
+{
+	int count = 0;
+	for(count = 0; count < numOccupied; count++)
+	{
+		if(occupiedXPositions[count] == x && occupiedYPositions[count] == y) 
+		{
+			//printw("%d x %d:%d x %d\n", x, y, occupiedXPositions[count], occupiedYPositions[count]);
+			return 1;
+		}
+	}
+	return 0;
+}
 void printUI(element node)
 {
 	int count = 0;
@@ -187,16 +204,19 @@ void printUI(element node)
 		if(!(xmlStrcmp(node.children[count].type,(const xmlChar *) "rectangle")))	
 		{
 			mySleep(1000);
-			rectangle(node.children[count].height,	
-			node.children[count].width,	
-			node.children[count].x,	
-			node.children[count].y,	
-			node.children[count].foreground,	
-			node.children[count].background,	
-			node.children[count].character);
-			refresh();
-			printUI(node.children[count]);
-			addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
+			if(!checkOccupied(node.children[count].x, node.children[count].y))
+			{
+				rectangle(node.children[count].height,	
+				node.children[count].width,	
+				node.children[count].x,	
+				node.children[count].y,	
+				node.children[count].foreground,	
+				node.children[count].background,	
+				node.children[count].character);
+				refresh();
+				printUI(node.children[count]);
+				addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
+			}
 		}
 	}
 }
@@ -252,20 +272,27 @@ void addToNumOccupied(int row, int col, int xPos, int yPos)
 	int width = 0;
 	int counter = numOccupied;
 	int newSize = numOccupied+additionalSize+2;
-	temp = realloc(occupiedPositions, newSize*sizeof(int));
+	temp = realloc(occupiedXPositions, newSize*sizeof(int));
 	if(!temp)
 	{
 		perror("Error adding to number of occupied spaces array: ");
 		exit(1);
 	}
-	occupiedPositions = temp;
+	occupiedXPositions = temp;
+	temp = realloc(occupiedYPositions, newSize*sizeof(int));
+	if(!temp)
+	{
+		perror("Error adding to number of occupied spaces array: ");
+		exit(1);
+	}
+	occupiedYPositions = temp;
 	for(height = 0; height < row && counter < newSize; height++)
 	{
-		occupiedPositions[counter] = yPos+height;
-		counter++;
 		for(width = 0; width < col && counter < newSize; width++)
 		{
-			occupiedPositions[counter] = xPos+width;
+			occupiedXPositions[counter] = xPos+width;
+			occupiedYPositions[counter] = yPos+height;
+
 			numOccupied++;
 			counter++;
 		}

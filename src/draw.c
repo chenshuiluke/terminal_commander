@@ -12,7 +12,7 @@ void rectangle(int row, int col,int xPos, int yPos,int foreground, int backgroun
 		for(width = 0; width < col; width++)
 		{
 			move(yPos+height, xPos+width);
-			printw("%d", count);
+			printw("%c", character);
 		}
 		printw("\n");
 	}

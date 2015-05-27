@@ -28,7 +28,8 @@ typedef struct el
 	char type[50];
 }element;
 element UI={0,0,0,0,0,0,0,NULL,NULL};
-int * occupiedPositions = NULL;
+int * occupiedXPositions = NULL;
+int * occupiedYPositions = NULL;
 int numOccupied = 0;
 int setUIFile();
 int testUIFile();
@@ -39,6 +40,7 @@ void scanUIFile();
 void printUI(element node);
 void getChildren(element * node,const xmlNodePtr current);
 void addToNumOccupied(int height, int width, int xPos, int yPos);
+int checkOccupied(int x, int y);
 #ifdef LINUX
 #include <unistd.h>
 #endif
