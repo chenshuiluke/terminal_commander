@@ -28,19 +28,22 @@ typedef struct el
 	char type[50];
 }element;
 element UI={0,0,0,0,0,0,0,NULL,NULL};
+
 int * occupiedXPositions = NULL;
 int * occupiedYPositions = NULL;
 int numOccupied = 0;
-int setUIFile();
-int testUIFile();
-void readUIFile();
-void printDocument();
-void clearAll();
+
+int setUIFile(); //Sets the path of the UI file
+int testUIFile();//Tests the validity of the path of the UI file
+void readUIFile();//Sets up the document document xmlDocPtr
+
+void clearAll(); //frees up the memory from the document variable and the UI array.
 void scanUIFile();
 void printUI(element node);
 void getChildren(element * node,const xmlNodePtr current);
 void addToNumOccupied(int height, int width, int xPos, int yPos);
 int checkOccupied(int x, int y);
+void useTempPtr(void * value, int * destination); //Used in getChildren. The value pointer is assigned to destination and the memory is freed
 #ifdef LINUX
 #include <unistd.h>
 #endif

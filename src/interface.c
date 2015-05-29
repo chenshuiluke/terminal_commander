@@ -3,6 +3,13 @@ xmlDocPtr document = NULL;
 xmlNodePtr current = NULL;
 void * cleaner = NULL;
 
+void useTempPtr(void * value, int * destination)//Value is temporarily assigned
+{
+	cleaner = value;	
+	*destination = atoi(cleaner);
+	free(cleaner);
+}
+
 int setUIFile(char file[])
 {
 	strcpy(attemptedFile,file);
@@ -75,21 +82,6 @@ void readUIFile()
 	*/
 }
 
-void printDocument()
-{
-	/*
-	int counter = 0;
-	for(counter = 0; counter < documentSize; counter++)
-	{
-		printw("%c",(char)document[counter]);
-		fflush(stdout);
-	}
-	refresh();
-		
-	*/
-
-}
-
 void clearAll()
 {
 	if(document)
@@ -133,42 +125,18 @@ void getChildren(element * node,const xmlNodePtr current)
 //		getChildren(&((*node).children[0]), temp);
 		while(temp)
 		{
+			element * elementPtr = NULL;
 			if(!xmlStrcmp(temp->name,"rectangle"))
 			{
-				(*node).children[count].parent = node;
+				elementPtr = &((*node).children[count]);
+				(*elementPtr).parent = node;
 
-				cleaner = (char *) xmlGetProp(temp, "height");		
-				(*node).children[count].height = atoi(cleaner);		
-				free(cleaner);
-
-				cleaner = (char *) xmlGetProp(temp, "width");		
-				(*node).children[count].width = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "x");		
-				(*node).children[count].x = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "y");		
-				(*node).children[count].y = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "foreground");		
-				(*node).children[count].foreground = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "background");		
-				(*node).children[count].background = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "character");		
-				(*node).children[count].character = ((char *)cleaner)[0];		
-				free(cleaner);
+				useTempPtr((char *) xmlGetProp(temp, "height"), &(*elementPtr).height);
+				useTempPtr((char *) xmlGetProp(temp, "width"), &(*elementPtr).width);
+				useTempPtr((char *) xmlGetProp(temp, "x"), &(*elementPtr).x);
+				useTempPtr((char *) xmlGetProp(temp, "y"), &(*elementPtr).y);
+				useTempPtr((char *) xmlGetProp(temp, "foreground"), &(*elementPtr).foreground);
+				useTempPtr((char *) xmlGetProp(temp, "background"), &(*elementPtr).background);
 
 				strcpy((*node).children[count].type,temp->name);		
 				tempCpy = temp;
