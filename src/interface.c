@@ -135,42 +135,22 @@ void getChildren(element * node,const xmlNodePtr current)
 		{
 			if(!xmlStrcmp(temp->name,"rectangle"))
 			{
+                int attributeCounter = 0; //Current position in below loop
+                //An array containing all the attributes of a rectangle
+                char rectangleAttributes[7][15] =  
+                {{"height"}, {"width"}, {"x"}, {"y"}, {"foreground"}, {"background"}, {"character"}};
+
 				(*node).children[count].parent = node;
 
-				cleaner = (char *) xmlGetProp(temp, "height");		
-				(*node).children[count].height = atoi(cleaner);		
-				free(cleaner);
-
-				cleaner = (char *) xmlGetProp(temp, "width");		
-				(*node).children[count].width = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "x");		
-				(*node).children[count].x = atoi(cleaner);		
-				free(cleaner);
+                for(attributeCounter = 0; attributeCounter < 7; attributeCounter++) 
+                {
+                    cleaner = (char *) xmlGetProp(temp, rectangleAttributes[attributeCounter]);		
+                    (*node).children[count].character = ((char *)cleaner)[0];		
+                    free(cleaner);
+                }
 
 
-				cleaner = (char *) xmlGetProp(temp, "y");		
-				(*node).children[count].y = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "foreground");		
-				(*node).children[count].foreground = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "background");		
-				(*node).children[count].background = atoi(cleaner);		
-				free(cleaner);
-
-
-				cleaner = (char *) xmlGetProp(temp, "character");		
-				(*node).children[count].character = ((char *)cleaner)[0];		
-				free(cleaner);
-
-				strcpy((*node).children[count].type,temp->name);		
+				strcpy((*node).children[count].type, temp->name);		
 				tempCpy = temp;
 				getChildren(&((*node).children[count]), temp);
 				count++;

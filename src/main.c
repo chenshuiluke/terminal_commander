@@ -3,17 +3,24 @@
 #include "terminal_commander.h"
 int main()
 {
+    /*Initialize ncurses 
+     *starts colour support
+     *disable line buffering 
+     *allow scrolling when the cursor reaches the bottom
+     */
 	initscr();
 	start_color();
 	setvbuf(stdout, NULL, _IONBF, 0);
  	scrollok(stdscr, TRUE);
+
 	if(setUIFile("ui.xml"))
 	{
 		printw("Specified UI file doesn't exist: %s!\n", attemptedFile);
 		refresh();
 		abort();
 	}
-	readUIFile();
+
+	readUIFile(); //Sets the root node of the xml document
 	continuouslyUpdateInfo();
 	refresh();
 	scanUIFile();
