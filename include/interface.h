@@ -56,7 +56,7 @@ void mySleep(int sleepMs)
 #ifdef __gnu_linux__
     usleep(sleepMs * 1000);   // usleep takes sleep time in us (1 millionth of a second)
     #endif
-    #ifdef _WIN32S
+    #ifdef _WIN32
         Sleep(sleepMs);
 #endif
 	}
