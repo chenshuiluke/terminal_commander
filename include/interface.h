@@ -41,6 +41,7 @@ void printUI(element node);
 void getChildren(element * node,const xmlNodePtr current);
 void addToNumOccupied(int height, int width, int xPos, int yPos);
 int checkOccupied(int x, int y);
+void useTempPtr(void * value, int * destination); //Used in getChildren. The value pointer is assigned to destination and the memory is freed
 #ifdef LINUX
 #include <unistd.h>
 #endif
