@@ -1,3 +1,6 @@
 [submodule "xml.c"]
 	path = xml.c
 	url = https://github.com/ooxi/xml.c
+[submodule "minunit"]
+	path = minunit
+	url = https://github.com/siu/minunit

@@ -1,3 +1,5 @@
+unit_test: src/test.c src/main.c src/terminal_info.c src/interface.c src/draw.c include/terminal_info.h include/interface.h include/terminal_commander.h include/draw.h
+	gcc -w -Wl,-rpath=. src/test.c -Lbin/linux -lterminal_commander -Iinclude -I/src/ -g -lncurses -lSDL -o unit_test `xml2-config --cflags --libs`
 linux_lib: src/main.c src/terminal_info.c src/interface.c src/draw.c include/terminal_info.h include/interface.h include/terminal_commander.h include/draw.h
 	
 	gcc -w -c -fPIC src/terminal_info.c src/interface.c src/draw.c -g -lncurses -lSDL -Iinclude -I/src/ `xml2-config --cflags`
