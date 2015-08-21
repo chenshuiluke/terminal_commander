@@ -12,6 +12,8 @@ void useTempPtr(void * value, int * destination)//Value is temporarily assigned
 
 int setUIFile(char file[])
 {
+    attemptedFile[0] = '\0';
+    uiFile[0] = '\0';
 	strcpy(attemptedFile,file);
 	if(!testUIFile(file))
 	{

@@ -1,0 +1,6 @@
+<ui>
+	<rectangle height="5" width = "5" x = "0" y = "3" foreground = "0" background = "6" character = "+">
+		<rectangle height="5" width = "5" x = "50" y = "20" foreground = "0" background = "1" character = "-">
+		</rectangle>
+	</rectangle>
+</ui>
