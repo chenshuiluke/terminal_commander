@@ -24,6 +24,7 @@ int main()
 	continuouslyUpdateInfo();
 	refresh();
 	scanUIFile();
+    printUI(UI, 1);
 //	printDocument();
 	//rectangle(8,8,5,7,COLOR_WHITE,COLOR_RED);
 	getch();

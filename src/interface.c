@@ -186,7 +186,7 @@ int checkOccupied(int x, int y)
 	}
 	return 0;
 }
-void printUI(element node)
+void printUI(element node, int overlap)
 {
 	int count = 0;
 	if(node.numChildren == 0)
@@ -208,7 +208,7 @@ void printUI(element node)
 				node.children[count].background,	
 				node.children[count].character);
 				refresh();
-				printUI(node.children[count]);
+				printUI(node.children[count], overlap);
 				addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
 			}
 		}
@@ -224,39 +224,6 @@ void scanUIFile()
 		return;
 	}
 	getChildren(&UI, current);	
-	printUI(UI);
-	int y;
-	/*
-	xmlNodePtr top = current;	
-	while(current)
-	{
-		if(!xmlStrcmp(current->name,(const xmlChar *) "rectangle"))		
-		{
-			//http://xmlsoft.org/tutorial/ar01s08.html
-			xmlChar * height, * width, * x, * y, * foreground, * background, * character;
-			height = NULL; width = NULL; x = NULL; y = NULL; foreground = NULL; background = NULL;
-			character = NULL;
-
-			height = xmlGetProp(current,"height");	
-			width = xmlGetProp(current,"width");
-			x = xmlGetProp(current,"x");
-			y = xmlGetProp(current,"y");
-			foreground = xmlGetProp(current, "foreground");
-			background = xmlGetProp(current, "background");
-			character = xmlGetProp(current,"character");
-			if(height && width && x && y && foreground && background && character)
-			{
-				rectangle(atoi((char *)height),  atoi((char *)width),  atoi((char *)x),  atoi((char *)y),  atoi((char *)foreground),  atoi((char *)background), ((char *)character)[0]);	
-			}
-			else
-			{
-				printw("The rectangle doesn't have enough attributes");
-				refresh();
-			}
-		}
-		current = current -> next;
-	}
-	*/
 }
 void addToNumOccupied(int row, int col, int xPos, int yPos)
 {
