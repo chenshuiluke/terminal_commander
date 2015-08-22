@@ -195,22 +195,24 @@ void printUI(element node, int overlap)
 	}
 	for(count = 0; count < node.numChildren; count++)
 	{
+        mySleep(1000);
 		if(!(xmlStrcmp(node.children[count].type,(const xmlChar *) "rectangle")))	
 		{
-			mySleep(1000);
-			if(!checkOccupied(node.children[count].x, node.children[count].y))
-			{
-				rectangle(node.children[count].height,	
-				node.children[count].width,	
-				node.children[count].x,	
-				node.children[count].y,	
-				node.children[count].foreground,	
-				node.children[count].background,	
-				node.children[count].character);
-				refresh();
-				printUI(node.children[count], overlap);
-				addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
-			}
+            //If overlap is allowed, print regardless
+            //If overlap isn't allowed, print if there is no occupied region
+            if(overlap || !checkOccupied(node.children[count].x, node.children[count].y))
+            {
+                rectangle(node.children[count].height,	
+                node.children[count].width,	
+                node.children[count].x,	
+                node.children[count].y,	
+                node.children[count].foreground,	
+                node.children[count].background,	
+                node.children[count].character);
+                refresh();
+                printUI(node.children[count], overlap);
+                addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
+            }
 		}
 	}
 }
