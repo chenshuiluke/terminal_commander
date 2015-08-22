@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "terminal_commander.h"
 #include "../minunit/minunit.h"
-
+/*Tests the capabilities of the library*/
 
 MU_TEST(test_set_ui_file_variable)
 {
