@@ -49,6 +49,36 @@ MU_TEST(check_xml_scanning_capabilities)
     mu_check(UI.children[0].children[0].x == 50 && UI.children[0].children[0].y == 20 && UI.children[0].children[0].height == 5 && UI.children[0].children[0].width == 5);
     mu_check(UI.children[0].children[0].background == 1 && UI.children[0].children[0].foreground == 0 && UI.children[0].children[0].character == '-');
 }
+MU_TEST(check_print)
+{
+	initscr();
+	start_color();
+	setvbuf(stdout, NULL, _IONBF, 0);
+ 	scrollok(stdscr, TRUE);
+    printUI(UI); 
+	endwin();
+    int xPositions[50] = {50, 51, 52, 53, 54, 50, 51, 52, 53, 54, 50, 51, 52, 53, 54, 50, 51, 52, 53, 54, 50, 51, 52, 53, 54, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4};
+    int yPositions[50] = {20, 20, 20, 20, 20, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7,};
+
+    int counter = 0;
+    int equal = 1;
+    FILE * fileWriter = fopen("log", "w");
+    mu_check(fileWriter);
+    if(fileWriter)
+    {
+        for(counter = 0; counter < numOccupied; counter++)
+        {
+            if((xPositions[counter] != occupiedXPositions[counter]) ||
+               ( yPositions[counter] != occupiedYPositions[counter]))
+            {
+                equal = 0;
+            }
+            fprintf(fileWriter,"original: %d %d || %d %d\n",occupiedXPositions[counter], occupiedYPositions[counter], xPositions[counter], yPositions[counter]);
+        }
+        fclose(fileWriter);
+    }
+    mu_check(equal == 1);
+}
 
 MU_TEST_SUITE(test_suite)
 {
@@ -57,6 +87,7 @@ MU_TEST_SUITE(test_suite)
     MU_RUN_TEST(check_parse_ui_file);
     MU_RUN_TEST(check_for_empty_ui_file);
     MU_RUN_TEST(check_xml_scanning_capabilities);
+    MU_RUN_TEST(check_print);
 }
 
 int main()
