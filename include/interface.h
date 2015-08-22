@@ -37,7 +37,7 @@ void readUIFile();
 void printDocument();
 void clearAll();
 void scanUIFile();
-void printUI(element node);
+void printUI(element node, int overlap);
 void getChildren(element * node,const xmlNodePtr current);
 void addToNumOccupied(int height, int width, int xPos, int yPos);
 int checkOccupied(int x, int y);
