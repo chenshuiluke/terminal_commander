@@ -25,6 +25,7 @@ typedef struct el
 	struct el * parent;
 	struct el * children;
 	char character;
+	char text[100];
 	char type[50];
 }element;
 element UI={0,0,0,0,0,0,0,NULL,NULL};

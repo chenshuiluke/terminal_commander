@@ -145,11 +145,6 @@ void getChildren(element * node,const xmlNodePtr current)
             element * elementPtr = NULL;
 			if(!xmlStrcmp(temp->name,"rectangle"))
 			{
-                int attributeCounter = 0; //Current position in below loop
-                //An array containing all the attributes of a rectangle
-                char rectangleAttributes[7][15] =  
-                {{"height"}, {"width"}, {"x"}, {"y"}, {"foreground"}, {"background"}, {"character"}};
-
 				(*node).children[count].parent = node;
                 elementPtr = &((*node).children[count]);
 
@@ -169,6 +164,22 @@ void getChildren(element * node,const xmlNodePtr current)
 				getChildren(&((*node).children[count]), temp);
 				count++;
 			}
+            if(!xmlStrcmp(temp->name, "p"))
+            {
+				(*node).children[count].parent = node;
+                elementPtr = &((*node).children[count]);
+
+                useTempPtr((char *) xmlGetProp(temp, "x"), &(*elementPtr).x);
+                useTempPtr((char *) xmlGetProp(temp, "y"), &(*elementPtr).y);
+                useTempPtr((char *) xmlGetProp(temp, "foreground"), &(*elementPtr).foreground);
+                useTempPtr((char *) xmlGetProp(temp, "background"), &(*elementPtr).background);
+
+                strncpy(&(*elementPtr).text, (char *) xmlNodeListGetString(document, temp->xmlChildrenNode,1), 100 * sizeof(char));
+				strcpy(&(*elementPtr).type, temp->name);		
+				tempCpy = temp;
+				getChildren(&((*node).children[count]), temp);
+				count++;
+            }
 			temp = temp->next;
 		}
 	}
@@ -195,7 +206,7 @@ void printUI(element node, int overlap)
 	}
 	for(count = 0; count < node.numChildren; count++)
 	{
-        mySleep(1000);
+        mySleep(10);
 		if(!(xmlStrcmp(node.children[count].type,(const xmlChar *) "rectangle")))	
 		{
             //If overlap is allowed, print regardless
@@ -209,6 +220,23 @@ void printUI(element node, int overlap)
                 node.children[count].foreground,	
                 node.children[count].background,	
                 node.children[count].character);
+                refresh();
+                printUI(node.children[count], overlap);
+                addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
+            }
+		}
+
+		if(!(xmlStrcmp(node.children[count].type,(const xmlChar *) "p")))	
+		{
+            //If overlap is allowed, print regardless
+            //If overlap isn't allowed, print if there is no occupied region
+            if(overlap || !checkOccupied(node.children[count].x, node.children[count].y))
+            {
+                text(node.children[count].x,	
+                node.children[count].y,	
+                node.children[count].foreground,	
+                node.children[count].background,	
+                node.children[count].text);
                 refresh();
                 printUI(node.children[count], overlap);
                 addToNumOccupied(node.children[count].height, node.children[count].width, node.children[count].x, node.children[count].y);
@@ -260,5 +288,6 @@ void addToNumOccupied(int row, int col, int xPos, int yPos)
 			counter++;
 		}
 	}
-
 }
+
+

@@ -14,7 +14,6 @@ void rectangle(int row, int col,int xPos, int yPos,int foreground, int backgroun
 			move(yPos+height, xPos+width);
 			printw("%c", character);
 		}
-		printw("\n");
 	}
 	count++;
 	setColorForShape(foreground, background);
@@ -49,4 +48,16 @@ void setColorForShape(int foreground, int background)
 	{
 		printw("Your terminal doesn't support colors\n");
 	}
+}
+void text(int xPos, int yPos,int foreground, int background, char text[])
+{
+	static int count = 0;
+	int height = 0;
+	int width = 0;
+
+    move(yPos, xPos);
+	setColorForShape(foreground, background);
+    printw("%s", text);
+	count++;
+	setColorForShape(foreground, background);
 }
