@@ -1,7 +1,7 @@
 <ui>
-    <rectangle height="35" width = "1000" x = "0" y = "0" foreground = "0" background = "4" character = " ">
-        <rectangle height="25" width = "90" x = "10" y = "5" foreground = "0" background = "3" character = " ">
+    <rectangle height="35" width = "110" x = "0" y = "0" foreground = "0" background = "4" character = " ">
+        <rectangle height="25" width = "1000" x = "10" y = "5" foreground = "0" background = "3" character = " ">
         </rectangle>
     </rectangle>
-    <p x="40" y="10" foreground = "0" background = "2">Welcome to terminal commander!</p>
+    <p x="90" y="10" foreground = "0" background = "2">Welcome to terminal commander!</p>
 </ui>
