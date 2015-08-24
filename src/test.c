@@ -24,12 +24,12 @@ MU_TEST(check_for_empty_ui_file)
 }
 MU_TEST(check_xml_scanning_capabilities)
 {
-    char test_xml_variable[500] = "<ui>\n\t<rectangle height=\"5\" width = \"5\" x = \"0\" y = \"3\" foreground = \"0\" background = \"6\" character = \"+\">\n\t\t<rectangle height=\"5\" width = \"5\" x = \"50\" y = \"20\" foreground = \"0\" background = \"1\" character = \"-\">\n\t\t</rectangle>\n\t</rectangle>\n</ui>";
+    char test_xml_variable[500] = "<ui>\n\t<rectangle height=\"5\" width = \"5\" x = \"0\" y = \"3\" foreground = \"0\" background = \"6\" character = \"+\">\n\t\t<rectangle height=\"5\" width = \"5\" x = \"50\" y = \"20\" foreground = \"0\" background = \"1\" character = \"-\">\n\t\t</rectangle>\n\t</rectangle>\n\t<p x=\"90\" y=\"10\" foreground = \"0\" background = \"2\">Welcome to terminal commander!</p>\n</ui>";
     FILE * fileWriter = fopen("test_ui.xml", "w");
     mu_check(fileWriter);
     if(fileWriter)
     {
-       mu_check(fprintf(fileWriter, "%s", test_xml_variable) == 246); 
+       mu_check(fprintf(fileWriter, "%s", test_xml_variable) == 333); 
        fclose(fileWriter);
     }
     else
@@ -41,7 +41,7 @@ MU_TEST(check_xml_scanning_capabilities)
     document = xmlParseFile(uiFile); 
     current = xmlDocGetRootElement(document);
 	getChildren(&UI, current);	
-    mu_check(UI.numChildren == 1);
+    mu_check(UI.numChildren == 2);
     mu_check(UI.children[0].numChildren == 1);
     mu_check(UI.children[0].x == 0 && UI.children[0].y == 3 && UI.children[0].height == 5 && UI.children[0].width == 5);
     mu_check(UI.children[0].background == 6 && UI.children[0].foreground == 0 && UI.children[0].character == '+');

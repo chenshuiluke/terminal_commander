@@ -169,6 +169,8 @@ void getChildren(element * node,const xmlNodePtr current)
 				(*node).children[count].parent = node;
                 elementPtr = &((*node).children[count]);
 
+                useTempPtr((char *) xmlGetProp(temp, "height"), &(*elementPtr).height);
+                useTempPtr((char *) xmlGetProp(temp, "width"), &(*elementPtr).width);
                 useTempPtr((char *) xmlGetProp(temp, "x"), &(*elementPtr).x);
                 useTempPtr((char *) xmlGetProp(temp, "y"), &(*elementPtr).y);
                 useTempPtr((char *) xmlGetProp(temp, "foreground"), &(*elementPtr).foreground);
@@ -232,7 +234,9 @@ void printUI(element node, int overlap)
             //If overlap isn't allowed, print if there is no occupied region
             if(overlap || !checkOccupied(node.children[count].x, node.children[count].y))
             {
-                text(node.children[count].x,	
+                text(node.children[count].height,
+                node.children[count].width,
+                node.children[count].x,	
                 node.children[count].y,	
                 node.children[count].foreground,	
                 node.children[count].background,	
