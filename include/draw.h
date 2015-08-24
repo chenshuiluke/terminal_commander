@@ -6,5 +6,5 @@
 #endif
 #endif
 void rectangle(int height, int width, int xPos, int yPos, int foreground, int background, char character);
-void text(int xPos, int yPos, int foreground, int background, char text[]);
+void text(int height, int width, int xPos, int yPos, int foreground, int background, char text[]);
 void setColorForShape(int foreground, int background);

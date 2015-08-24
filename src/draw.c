@@ -57,14 +57,50 @@ void setColorForShape(int foreground, int background)
 		printw("Your terminal doesn't support colors\n");
 	}
 }
+void stripOutBadChars(char * text[])
+{
+    char result[strlen(*text)];
+    char previousChar = ' ';
+    int position = 0;
+    int resultPosition = 0;
+    int foundFirstNonWhiteSpaceCharacter = 0;
+    int duplicateSpace = 0;
+    memset(result, '\0', strlen(*text));
+    for(position = 0; position < strlen(*text); position++)
+    {
+       if(previousChar == ' ' && (*text)[position] == ' ')
+       {
+            duplicateSpace = 1;
+       }
+       else 
+       {
+            duplicateSpace = 0;
+       }
+       if((*text)[position] != ' ' && (*text)[position] != '\n' && 
+       (*text)[position] != '\t' && (*text)[position] != '\r')
+       {
+            foundFirstNonWhiteSpaceCharacter = 1;
+       }
+       if((*text)[position] != '\n' && (*text)[position] != '\t' && 
+       (*text)[position] != '\r' && foundFirstNonWhiteSpaceCharacter && !duplicateSpace)
+       {
+            result[resultPosition] = (*text)[position];
+            resultPosition++;
+       }
+       previousChar = (*text)[position];
+    }
+    result[strlen(result)-1] = result[strlen(result)-1] == ' ' ? '\0' : result[strlen(result)-1];
+    memset(*text, '\0', strlen(*text));
+    strcpy(*text, result);
+}
 void text(int height, int width, int xPos, int yPos,int foreground, int background, char text[])
 {
 	static int count = 0;
-	int height = 0;
-	int width = 0;
-    while((xPos + strlen(text)) > terminalRows || (yPos > terminalColumns))
+	int position = 0;
+    stripOutBadChars(&text);
+    while(xPos + width > terminalRows || (yPos > terminalColumns))
     {
-        if(xPos + strlen(text) > terminalRows)
+        if((xPos + width) > terminalRows)
         {
             xPos--;
         }
@@ -73,9 +109,25 @@ void text(int height, int width, int xPos, int yPos,int foreground, int backgrou
             yPos--;
         }
     }
-    move(yPos, xPos);
     setColorForShape(foreground, background);
-    printw("%s", text);
+    for(position = 0; position < strlen(text); position++)
+    {
+        move(yPos, xPos);
+        printw("%c", text[position]);
+        if(((position+1) % width) == 0 && position > 0)
+        {
+            if(yPos > terminalColumns)
+            {
+                break;
+            }
+            else
+            {
+                yPos++;
+                xPos-=width;
+            }
+        }
+        xPos++;
+    }
 	count++;
 	setColorForShape(foreground, background);
 }

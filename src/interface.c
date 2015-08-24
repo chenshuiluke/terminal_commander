@@ -176,7 +176,7 @@ void getChildren(element * node,const xmlNodePtr current)
                 useTempPtr((char *) xmlGetProp(temp, "foreground"), &(*elementPtr).foreground);
                 useTempPtr((char *) xmlGetProp(temp, "background"), &(*elementPtr).background);
 
-                strncpy(&(*elementPtr).text, (char *) xmlNodeListGetString(document, temp->xmlChildrenNode,1), 100 * sizeof(char));
+                strncpy(&(*elementPtr).text, (char *) xmlNodeListGetString(document, temp->xmlChildrenNode,1), 1000 * sizeof(char));
 				strcpy(&(*elementPtr).type, temp->name);		
 				tempCpy = temp;
 				getChildren(&((*node).children[count]), temp);
