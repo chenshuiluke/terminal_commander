@@ -1,4 +1,5 @@
 #include "draw.h"
+#include "terminal_info.h"
 
 void rectangle(int row, int col,int xPos, int yPos,int foreground, int background, char character)
 {
@@ -11,8 +12,14 @@ void rectangle(int row, int col,int xPos, int yPos,int foreground, int backgroun
 	{
 		for(width = 0; width < col; width++)
 		{
-			move(yPos+height, xPos+width);
-			printw("%c", character);
+            int xPrintPosition = xPos + width;
+            int yPrintPosition = yPos + width;
+            if(yPrintPosition < terminalRows
+                    && xPrintPosition < terminalRows)
+            {
+                move(yPos+height, xPos+width);
+                printw("%c", character);
+            }
 		}
 	}
 	count++;
@@ -54,9 +61,19 @@ void text(int xPos, int yPos,int foreground, int background, char text[])
 	static int count = 0;
 	int height = 0;
 	int width = 0;
-
+    while((xPos + strlen(text)) > terminalRows || (yPos > terminalColumns))
+    {
+        if(xPos + strlen(text) > terminalRows)
+        {
+            xPos--;
+        }
+        if(yPos > terminalColumns)
+        {
+            yPos--;
+        }
+    }
     move(yPos, xPos);
-	setColorForShape(foreground, background);
+    setColorForShape(foreground, background);
     printw("%s", text);
 	count++;
 	setColorForShape(foreground, background);
