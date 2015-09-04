@@ -1,18 +1,12 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#ifdef __gnu_linux__
-	#include <ncurses.h>
-#else
-#ifdef _WIN32
-	#include <curses.h>
+#ifndef TERMINAL_INFO_H
+	#define TERMINAL_INFO_H
+	#ifdef __gnu_linux__
+		#include <ncurses.h>
+	#endif
+	#ifdef _WIN32
+		#include <curses.h>
+	#endif
+	extern int terminal_rows;
+	extern int terminal_columns;
+	void continuouslyUpdateTerminalInfo();
 #endif
-#endif
-
-int terminalColumns;
-int terminalRows;
-char terminalDimensionsExecutable[50];
-
-void getTerminalDimensions();
-
-void continuouslyUpdateInfo();
