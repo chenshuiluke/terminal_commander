@@ -3,11 +3,12 @@
 #include "terminal_commander.h"
 int main()
 {
-    /*Initialize ncurses 
+    /*Initialize ncurses
      *starts colour support
-     *disable line buffering 
+     *disable line buffering
      *allow scrolling when the cursor reaches the bottom
      */
+		 /*
 	initscr();
 	start_color();
 	setvbuf(stdout, NULL, _IONBF, 0);
@@ -31,4 +32,5 @@ int main()
 	endwin();
 	clearAll();
 	return 0;
+	*/
 }

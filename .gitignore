@@ -4,5 +4,6 @@ bin/windows
 *swp*
 *swo*
 *swn*
+*ghc*
 ui.xml
 unit_test
