@@ -2,8 +2,10 @@
 #include "miscellaneous.h"
 int terminalColumns = 0;
 int terminalRows = 0;
-void continuouslyUpdateTerminalInfo()
+void * continuouslyUpdateTerminalInfo()
 {
+	//http://stackoverflow.com/questions/7961029/how-can-i-kill-a-pthread-that-is-in-an-infinite-loop-from-outside-that-loop
+	pthread_setcanceltype(PTHREAD_CANCEL_ASYNCHRONOUS,NULL);
 	FILE * terminalInfoWriter = NULL;
 	terminalInfoWriter = fopen("terminal_info.log", "w");
 	int counter = 0;

@@ -6,7 +6,8 @@
 	#ifdef _WIN32
 		#include <curses.h>
 	#endif
+	#include <pthread.h>
 	extern int terminalRows;
 	extern int terminalColumns;
-	void continuouslyUpdateTerminalInfo();
+	void * continuouslyUpdateTerminalInfo();
 #endif
