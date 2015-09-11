@@ -9,5 +9,6 @@
 	#include <pthread.h>
 	extern int terminalRows;
 	extern int terminalColumns;
+	extern int terminateUpdateThread;
 	void * continuouslyUpdateTerminalInfo();
 #endif

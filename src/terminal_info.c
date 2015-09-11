@@ -2,6 +2,7 @@
 #include "miscellaneous.h"
 int terminalColumns = 0;
 int terminalRows = 0;
+int terminateUpdateThread = 0;
 void * continuouslyUpdateTerminalInfo()
 {
 	//http://stackoverflow.com/questions/7961029/how-can-i-kill-a-pthread-that-is-in-an-infinite-loop-from-outside-that-loop
@@ -9,7 +10,7 @@ void * continuouslyUpdateTerminalInfo()
 	FILE * terminalInfoWriter = NULL;
 	terminalInfoWriter = fopen("terminal_info.log", "w");
 	int counter = 0;
-	while(1)
+	while(1 && !terminateUpdateThread)
 	{
 		mySleep(1);
 		terminalRows = getmaxy(stdscr);
