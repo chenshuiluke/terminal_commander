@@ -1,0 +1,8 @@
+bin/linux
+bin/windows
+*.so
+*swp*
+*swo*
+*swn*
+*tuml*
+*~*
