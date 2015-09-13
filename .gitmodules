@@ -4,3 +4,6 @@
 [submodule "minunit"]
 	path = minunit
 	url = https://github.com/siu/minunit
+[submodule "Catch"]
+	path = Catch
+	url = https://github.com/philsquared/Catch

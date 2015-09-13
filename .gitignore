@@ -4,5 +4,5 @@ bin/windows
 *swp*
 *swo*
 *swn*
-ui.xml
-unit_test
+*tuml*
+*~*
