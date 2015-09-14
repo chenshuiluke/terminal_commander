@@ -11,4 +11,6 @@ TEST_CASE("Test TumlElement class consistency")
   REQUIRE(test.getBackground() == "white");
   REQUIRE(test.getForeground() == "black");
   REQUIRE(test.getText() == "");
+  REQUIRE(initInterfaceData() == "No error");
 }
+

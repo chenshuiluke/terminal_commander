@@ -6,5 +6,6 @@
 #endif
 #include <iostream>
 #include "tumlElement.hpp"
+#include "interfaceData.hpp"
 
 int hello();
