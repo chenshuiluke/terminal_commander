@@ -1,5 +1,5 @@
-bin/linux
-bin/windows
+bin/*
+*.o
 *.so
 *swp*
 *swo*
