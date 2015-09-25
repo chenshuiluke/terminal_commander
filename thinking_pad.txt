@@ -1,8 +1,0 @@
-thinking pad
-global:
-node struct - name, x, y, foreground, background, children, parent, character, text
-
-possible types:
-rectangle
-text
-line
