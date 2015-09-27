@@ -1,7 +1,9 @@
 #include "terminal_commander.h"
+#include "rlutil.h"
 #include "termcolor.hpp"
 using namespace std;
 using namespace tinyxml2;
+using namespace rlutil;
 tinyxml2::XMLDocument doc;
 int openDoc(char * fileName)
 {
@@ -24,4 +26,11 @@ int testWriteDoc(char * fileName)
 
 	return temp.SaveFile(fileName);
 
+}
+void printText(char * text, int colour, int x, int y)
+{
+	locate(x,y);
+	int previousColour = BLACK;
+	setColor(colour);
+	cout << text;
 }

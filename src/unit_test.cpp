@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "terminal_commander.h"
+#include "rlutil.h"
 
 char testFile[] = "temp";
 TEST_CASE("writeDoc", "writedoc")
@@ -9,5 +10,5 @@ TEST_CASE("writeDoc", "writedoc")
 }
 TEST_CASE("openDoc", "opendoc")
 {
-	REQUIRE(openDoc(testFile) != 0);
+	printText("hi", rlutil::WHITE, 1, 2);
 }
