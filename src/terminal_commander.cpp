@@ -53,9 +53,39 @@ int testWriteDoc(char * fileName)
 	tinyxml2::XMLDocument temp;
 	XMLNode * root = temp.NewElement("Root");
 	temp.InsertFirstChild(root);
-	XMLElement * element = temp.NewElement("hi");
-	element->SetText(10);
+	XMLElement * element = temp.NewElement("tuml");
+	element->SetAttribute("background", "black");
+	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
+	{
+		char yString[5] = {'\0'};
+		sprintf(yString,"%d", y);
+		XMLElement * rectangle = temp.NewElement("rectangle");
+		rectangle->SetAttribute("text", "");
+		rectangle->SetAttribute("x", "0");
+		rectangle->SetAttribute("y", yString);
+		rectangle->SetAttribute("width", "5");
+		rectangle->SetAttribute("height", "5");
+		rectangle->SetAttribute("foreground", "cyan");
+		rectangle->SetAttribute("background", "white");
+		element->InsertEndChild(rectangle);
+	}
+	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
+	{
+		char textString[5][20] = {"Hello!", " Welcome", " to ", "terminal_", "commander!"};
+		char yString[5] = {'\0'};
+		sprintf(yString,"%d", y);
+		XMLElement * text = temp.NewElement("text");
+		text->SetAttribute("text", textString[counter]);
+		text->SetAttribute("x", "0");
+		text->SetAttribute("y", yString);
+		text->SetAttribute("width", "5");
+		text->SetAttribute("height", "5");
+		text->SetAttribute("foreground", "blue");
+		text->SetAttribute("background", "white");
+		element->InsertEndChild(text);
+	}
 	root->InsertEndChild(element);
+
 
 	return temp.SaveFile(fileName);
 
