@@ -2,10 +2,7 @@
 	#define TERMINAL_COMMANDER
 	#include <string>
 	#include "tinyxml2.h"
-	#include "termcolor.hpp"
-	using namespace std;
-	using namespace tinyxml2;
-	XMLDocument doc;
-	int openDoc(string fileName);
 
+int openDoc(char * fileName);
+int testWriteDoc(char * fileName);
 #endif
