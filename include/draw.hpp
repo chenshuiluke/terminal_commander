@@ -1,4 +1,5 @@
 #include "terminal_commander.h"
+#include <stdio.h>
 #include "rlutil.h"
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
@@ -56,13 +57,10 @@ void drawRectangle(TuiXMLElement element)
 	{
 		for(int counter1 = 0; counter1 <= height; counter1++)
 		{
-			cout << " ";
-			std::flush(cout);
-			locate(x+counter, y+counter1);
-			usleep(10000);
+			printf(" ");
 		}
+		locate(x, y++);
 	}
-	cout << " ";
 	cout << termcolor::reset;
 }
 void draw(TuiXMLElement element)
