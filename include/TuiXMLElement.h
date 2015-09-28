@@ -15,6 +15,7 @@ public:
 	int width;
 	int height;
 
+	string name;
 	string background;
 	string foreground;
 	string text;
@@ -24,6 +25,7 @@ public:
 		x = element->QueryIntAttribute("x", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 		y = element->QueryIntAttribute("y", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 
+		name = element->Name();
 		width = element->QueryIntAttribute("width", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 		height = element->QueryIntAttribute("height", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 
@@ -33,7 +35,7 @@ public:
 	}
 	void display()
 	{
-		std::cout << x << ' ' << y << ' ' << foreground << ' ' << background << ' ' << width << ' ' << height << " " <<text << endl;
+		std::cout << x << ' ' << y << ' ' << foreground << ' ' << background << ' ' << width << ' ' << height << " " << text << " " << name << endl;
 	}
 };
 #endif

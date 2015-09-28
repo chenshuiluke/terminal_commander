@@ -2,6 +2,7 @@
 #include "rlutil.h"
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
+#include "draw.hpp"
 
 using namespace std;
 using namespace tinyxml2;
@@ -166,6 +167,7 @@ void start()
 	{
 		for(int counter1 = 0; counter1 < layers[counter].size(); counter1++)
 		{
+			draw(layers[counter][counter1]);
 			layers[counter][counter1].display();
 		}
 	}
