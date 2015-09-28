@@ -3,7 +3,7 @@
 #include "terminal_commander.h"
 #include "rlutil.h"
 
-char testFile[] = "temp";
+char testFile[] = "ui.tuixml";
 TEST_CASE("writeDoc", "writedoc")
 {
 	start();

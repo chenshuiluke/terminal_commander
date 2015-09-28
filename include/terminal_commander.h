@@ -2,9 +2,10 @@
 	#define TERMINAL_COMMANDER
 	#include <string>
 	#include "tinyxml2.h"
+	using namespace std;
 
-int openDoc(char * fileName);
-int testWriteDoc(char * fileName);
+int openDoc(string fileName);
+int testWriteDoc(string fileName);
 void printText(char * text, int colour, int x, int y);
 void start();
 #endif

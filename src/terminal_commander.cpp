@@ -1,6 +1,7 @@
 #include "terminal_commander.h"
 #include "rlutil.h"
 #include "termcolor.hpp"
+#include "TuiXMLElement.h"
 using namespace std;
 using namespace tinyxml2;
 using namespace rlutil;
@@ -38,15 +39,15 @@ inline void changeIntToColor(int color)
 	}
 }
 
-int openDoc(char * fileName)
+int openDoc(string fileName)
 {
-	if(doc.LoadFile(fileName) == XML_NO_ERROR)
+	if(doc.LoadFile(fileName.c_str()) == XML_NO_ERROR)
 		return 1;
 	else
 		return 0;
 }
 
-int testWriteDoc(char * fileName)
+int testWriteDoc(string fileName)
 {
 	//https://shilohjames.wordpress.com/2014/04/27/tinyxml2-tutorial/#XML-CreateXMLDocument
 
@@ -87,7 +88,7 @@ int testWriteDoc(char * fileName)
 	root->InsertEndChild(element);
 
 
-	return temp.SaveFile(fileName);
+	return temp.SaveFile(fileName.c_str());
 
 }
 void printText(char * text, int colour, int x, int y)
@@ -99,7 +100,39 @@ void printText(char * text, int colour, int x, int y)
 
 }
 
+int parseDoc()
+{
+	XMLNode * root = doc.FirstChild();
+	if(root == nullptr)
+	{
+		return XML_ERROR_FILE_READ_ERROR;
+	}
+	XMLElement * tuixml = root->FirstChildElement("tuixml");
+	if(tuixml == nullptr)
+	{
+		return XML_ERROR_PARSING_ELEMENT;
+	}
+	XMLElement * temp = tuixml->FirstChildElement();
+	while(temp!=nullptr)
+	{
+		TuiXMLElement element(temp);
+		temp = temp->NextSiblingElement();
+
+	}
+
+}
+
 void start()
 {
 	cls();
+	openDoc("ui.tuixml");
+	switch(parseDoc())
+	{
+		case XML_ERROR_FILE_READ_ERROR:
+			cout << "There was an error reading ui.tuixml" << endl;
+		break;
+		case XML_ERROR_PARSING_ELEMENT:
+			cout << "There was an error reading ui.tuixml" << endl;
+		break;
+	}
 }
