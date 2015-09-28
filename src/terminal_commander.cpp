@@ -3,6 +3,8 @@
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
 #include "draw.hpp"
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -63,24 +65,33 @@ int testWriteDoc(string fileName)
 	temp.InsertFirstChild(root);
 	XMLElement * element = temp.NewElement("tuixml");
 	element->SetAttribute("background", "black");
-	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
+	for(int counter = 0, y = 0; counter < 4; counter++, y+=9)
 	{
-		char yString[5] = {'\0'};
-		sprintf(yString,"%d", y);
-		XMLElement * rectangle = temp.NewElement("rectangle");
-		rectangle->SetAttribute("text", "");
-		rectangle->SetAttribute("x", "0");
-		rectangle->SetAttribute("y", yString);
-		rectangle->SetAttribute("width", "5");
-		rectangle->SetAttribute("height", "5");
-		rectangle->SetAttribute("foreground", "cyan");
-		rectangle->SetAttribute("background", "white");
-		XMLElement * text = temp.NewElement("text");
-		XMLElement * text2 = temp.NewElement("text2");
-		text2->SetAttribute("blah", "Hi");
-		text->InsertEndChild(text2);
-		rectangle->InsertEndChild(text);
-		element->InsertEndChild(rectangle);
+		srand (time(NULL));
+		for(int counter1 = 0, x = 0; counter1 < 9; x+=15, counter1++ )
+		{
+			string colours[] = {"grey", "red", "green", "blue", "magenta", "cyan", "white"};
+			int background = rand() % 7;
+			int foreground = rand() % 7;
+			char yString[5] = {'\0'};
+			char xString[5] = {'\0'};
+			sprintf(yString,"%d", y);
+			sprintf(xString,"%d", x);
+			XMLElement * rectangle = temp.NewElement("rectangle");
+			rectangle->SetAttribute("text", "");
+			rectangle->SetAttribute("x", xString);
+			rectangle->SetAttribute("y", yString);
+			rectangle->SetAttribute("width", "5");
+			rectangle->SetAttribute("height", "5");
+			rectangle->SetAttribute("foreground", colours[foreground].c_str());
+			rectangle->SetAttribute("background", colours[background].c_str());
+			XMLElement * text = temp.NewElement("text");
+			XMLElement * text2 = temp.NewElement("text2");
+			text2->SetAttribute("blah", "Hi");
+			text->InsertEndChild(text2);
+			rectangle->InsertEndChild(text);
+			element->InsertEndChild(rectangle);
+		}
 	}
 	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
 	{
@@ -116,7 +127,7 @@ void createElementLayers(XMLElement * element)
 	{
 		TuiXMLElement TuiElement(element);
 	//	TuiElement.display();
-		cout << layerNum << endl;
+//		cout << layerNum << endl;
 		XMLElement * temp = element->FirstChildElement();
 		if(layers.size() - 1 < layerNum)
 			layers.push_back(layer);
@@ -168,7 +179,7 @@ void start()
 		for(int counter1 = 0; counter1 < layers[counter].size(); counter1++)
 		{
 			draw(layers[counter][counter1]);
-			layers[counter][counter1].display();
+			//layers[counter][counter1].display();
 		}
 	}
 }
