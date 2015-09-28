@@ -1,5 +1,5 @@
 <Root>
-    <tuml background="black">
+    <tuixml background="black">
         <rectangle text="" x="0" y="0" width="5" height="5" foreground="cyan" background="white"/>
         <rectangle text="" x="0" y="10" width="5" height="5" foreground="cyan" background="white"/>
         <rectangle text="" x="0" y="20" width="5" height="5" foreground="cyan" background="white"/>
@@ -10,5 +10,5 @@
         <text text=" to " x="0" y="20" width="5" height="5" foreground="blue" background="white"/>
         <text text="terminal_" x="0" y="30" width="5" height="5" foreground="blue" background="white"/>
         <text text="commander!" x="0" y="40" width="5" height="5" foreground="blue" background="white"/>
-    </tuml>
+    </tuixml>
 </Root>

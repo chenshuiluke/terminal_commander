@@ -2,10 +2,15 @@
 #include "rlutil.h"
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
+
 using namespace std;
 using namespace tinyxml2;
 using namespace rlutil;
+
 tinyxml2::XMLDocument doc;
+vector<TuiXMLElement> layer;
+vector<vector<TuiXMLElement>> layers;
+
 inline void changeIntToColor(int color)
 {
 	switch(color)
@@ -54,7 +59,7 @@ int testWriteDoc(string fileName)
 	tinyxml2::XMLDocument temp;
 	XMLNode * root = temp.NewElement("Root");
 	temp.InsertFirstChild(root);
-	XMLElement * element = temp.NewElement("tuml");
+	XMLElement * element = temp.NewElement("tuixml");
 	element->SetAttribute("background", "black");
 	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
 	{
@@ -96,8 +101,26 @@ void printText(char * text, int colour, int x, int y)
 	locate(x,y);
 	changeIntToColor(colour);
 	cout << text << termcolor::reset;
+}
+void createElementLayers(XMLElement * element)
+{
+	static int layerNum = 0;
+	int childFound = 0;
+	while(element != nullptr)
+	{
+		TuiXMLElement TuiElement(element);
+		TuiElement.display();
+		layers[layerNum].push_back(TuiElement);
+		if(element->FirstChildElement() != nullptr)
+		{
+			layerNum++;
+			layers.push_back(layer);
+			createElementLayers(element);
+		}
+		element = element->NextSiblingElement();
 
-
+	}
+	layerNum = layerNum > 0 ? layerNum - 1 : 0;
 }
 
 int parseDoc()
@@ -113,13 +136,7 @@ int parseDoc()
 		return XML_ERROR_PARSING_ELEMENT;
 	}
 	XMLElement * temp = tuixml->FirstChildElement();
-	while(temp!=nullptr)
-	{
-		TuiXMLElement element(temp);
-		temp = temp->NextSiblingElement();
-
-	}
-
+	createElementLayers(temp);
 }
 
 void start()
@@ -132,7 +149,7 @@ void start()
 			cout << "There was an error reading ui.tuixml" << endl;
 		break;
 		case XML_ERROR_PARSING_ELEMENT:
-			cout << "There was an error reading ui.tuixml" << endl;
+			cout << "There was an error parsing ui.tuixml" << endl;
 		break;
 	}
 }

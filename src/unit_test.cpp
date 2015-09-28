@@ -6,8 +6,8 @@
 char testFile[] = "ui.tuixml";
 TEST_CASE("writeDoc", "writedoc")
 {
-	start();
 	REQUIRE(testWriteDoc(testFile) == 0);
+	start();
 }
 TEST_CASE("openDoc", "opendoc")
 {

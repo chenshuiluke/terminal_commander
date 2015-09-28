@@ -2,6 +2,7 @@
 	#define TERMINAL_COMMANDER
 	#include <string>
 	#include "tinyxml2.h"
+	#include <vector>
 	using namespace std;
 
 int openDoc(string fileName);
