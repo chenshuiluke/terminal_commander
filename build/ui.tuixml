@@ -1,181 +1,181 @@
 <Root>
     <tuixml background="black">
-        <rectangle text="" x="0" y="0" width="5" height="5" foreground="cyan" background="red">
+        <rectangle text="" x="0" y="0" width="5" height="5" foreground="red" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="15" y="0" width="5" height="5" foreground="grey" background="grey">
+        <rectangle text="" x="15" y="0" width="5" height="5" foreground="green" background="grey">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="30" y="0" width="5" height="5" foreground="cyan" background="blue">
+        <rectangle text="" x="30" y="0" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="45" y="0" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="45" y="0" width="5" height="5" foreground="green" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="60" y="0" width="5" height="5" foreground="magenta" background="grey">
+        <rectangle text="" x="60" y="0" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="75" y="0" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="75" y="0" width="5" height="5" foreground="grey" background="magenta">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="90" y="0" width="5" height="5" foreground="blue" background="grey">
+        <rectangle text="" x="90" y="0" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="105" y="0" width="5" height="5" foreground="green" background="white">
+        <rectangle text="" x="105" y="0" width="5" height="5" foreground="cyan" background="white">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="120" y="0" width="5" height="5" foreground="magenta" background="green">
+        <rectangle text="" x="120" y="0" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="0" y="9" width="5" height="5" foreground="cyan" background="red">
+        <rectangle text="" x="0" y="9" width="5" height="5" foreground="red" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="15" y="9" width="5" height="5" foreground="grey" background="grey">
+        <rectangle text="" x="15" y="9" width="5" height="5" foreground="green" background="grey">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="30" y="9" width="5" height="5" foreground="cyan" background="blue">
+        <rectangle text="" x="30" y="9" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="45" y="9" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="45" y="9" width="5" height="5" foreground="green" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="60" y="9" width="5" height="5" foreground="magenta" background="grey">
+        <rectangle text="" x="60" y="9" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="75" y="9" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="75" y="9" width="5" height="5" foreground="grey" background="magenta">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="90" y="9" width="5" height="5" foreground="blue" background="grey">
+        <rectangle text="" x="90" y="9" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="105" y="9" width="5" height="5" foreground="green" background="white">
+        <rectangle text="" x="105" y="9" width="5" height="5" foreground="cyan" background="white">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="120" y="9" width="5" height="5" foreground="magenta" background="green">
+        <rectangle text="" x="120" y="9" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="0" y="18" width="5" height="5" foreground="cyan" background="red">
+        <rectangle text="" x="0" y="18" width="5" height="5" foreground="red" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="15" y="18" width="5" height="5" foreground="grey" background="grey">
+        <rectangle text="" x="15" y="18" width="5" height="5" foreground="green" background="grey">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="30" y="18" width="5" height="5" foreground="cyan" background="blue">
+        <rectangle text="" x="30" y="18" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="45" y="18" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="45" y="18" width="5" height="5" foreground="green" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="60" y="18" width="5" height="5" foreground="magenta" background="grey">
+        <rectangle text="" x="60" y="18" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="75" y="18" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="75" y="18" width="5" height="5" foreground="grey" background="magenta">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="90" y="18" width="5" height="5" foreground="blue" background="grey">
+        <rectangle text="" x="90" y="18" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="105" y="18" width="5" height="5" foreground="green" background="white">
+        <rectangle text="" x="105" y="18" width="5" height="5" foreground="cyan" background="white">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="120" y="18" width="5" height="5" foreground="magenta" background="green">
+        <rectangle text="" x="120" y="18" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="0" y="27" width="5" height="5" foreground="cyan" background="red">
+        <rectangle text="" x="0" y="27" width="5" height="5" foreground="red" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="15" y="27" width="5" height="5" foreground="grey" background="grey">
+        <rectangle text="" x="15" y="27" width="5" height="5" foreground="green" background="grey">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="30" y="27" width="5" height="5" foreground="cyan" background="blue">
+        <rectangle text="" x="30" y="27" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="45" y="27" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="45" y="27" width="5" height="5" foreground="green" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="60" y="27" width="5" height="5" foreground="magenta" background="grey">
+        <rectangle text="" x="60" y="27" width="5" height="5" foreground="cyan" background="green">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="75" y="27" width="5" height="5" foreground="red" background="grey">
+        <rectangle text="" x="75" y="27" width="5" height="5" foreground="grey" background="magenta">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="90" y="27" width="5" height="5" foreground="blue" background="grey">
+        <rectangle text="" x="90" y="27" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="105" y="27" width="5" height="5" foreground="green" background="white">
+        <rectangle text="" x="105" y="27" width="5" height="5" foreground="cyan" background="white">
             <text>
                 <text2 blah="Hi"/>
             </text>
         </rectangle>
-        <rectangle text="" x="120" y="27" width="5" height="5" foreground="magenta" background="green">
+        <rectangle text="" x="120" y="27" width="5" height="5" foreground="grey" background="blue">
             <text>
                 <text2 blah="Hi"/>
             </text>
