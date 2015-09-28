@@ -10,6 +10,7 @@ using namespace rlutil;
 tinyxml2::XMLDocument doc;
 vector<TuiXMLElement> layer;
 vector<vector<TuiXMLElement>> layers;
+int layerNum = 0;
 
 inline void changeIntToColor(int color)
 {
@@ -73,6 +74,11 @@ int testWriteDoc(string fileName)
 		rectangle->SetAttribute("height", "5");
 		rectangle->SetAttribute("foreground", "cyan");
 		rectangle->SetAttribute("background", "white");
+		XMLElement * text = temp.NewElement("text");
+		XMLElement * text2 = temp.NewElement("text2");
+		text2->SetAttribute("blah", "Hi");
+		text->InsertEndChild(text2);
+		rectangle->InsertEndChild(text);
 		element->InsertEndChild(rectangle);
 	}
 	for(int counter = 0, y = 0; counter < 5; counter++, y+=10)
@@ -102,23 +108,28 @@ void printText(char * text, int colour, int x, int y)
 	changeIntToColor(colour);
 	cout << text << termcolor::reset;
 }
+int count = 0;
 void createElementLayers(XMLElement * element)
 {
-	static int layerNum = 0;
-	int childFound = 0;
-	while(element != nullptr)
+	layerNum++;
+	while(element)
 	{
+		count++;
 		TuiXMLElement TuiElement(element);
-		TuiElement.display();
-		layers[layerNum].push_back(TuiElement);
-		if(element->FirstChildElement() != nullptr)
-		{
-			layerNum++;
+	//	TuiElement.display();
+		cout << layerNum << endl;
+		XMLElement * temp = element->FirstChildElement();
+		if(layers.size() - 1 < layerNum)
 			layers.push_back(layer);
-			createElementLayers(element);
+		layers[layerNum-1].push_back(TuiElement);
+		while(temp)
+		{
+			XMLElement * tempCpy = temp;
+
+			createElementLayers(temp);
+			temp = tempCpy->NextSiblingElement();
 		}
 		element = element->NextSiblingElement();
-
 	}
 	layerNum = layerNum > 0 ? layerNum - 1 : 0;
 }
@@ -136,6 +147,7 @@ int parseDoc()
 		return XML_ERROR_PARSING_ELEMENT;
 	}
 	XMLElement * temp = tuixml->FirstChildElement();
+	layers.push_back(layer);
 	createElementLayers(temp);
 }
 
@@ -151,5 +163,12 @@ void start()
 		case XML_ERROR_PARSING_ELEMENT:
 			cout << "There was an error parsing ui.tuixml" << endl;
 		break;
+	}
+	for(int counter = 0; counter < layers.size() - 1; counter++)
+	{
+		for(int counter1 = 0; counter1 < layers[counter].size(); counter1++)
+		{
+			layers[counter][counter1].display();
+		}
 	}
 }

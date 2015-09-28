@@ -1,10 +1,30 @@
 <Root>
     <tuixml background="black">
-        <rectangle text="" x="0" y="0" width="5" height="5" foreground="cyan" background="white"/>
-        <rectangle text="" x="0" y="10" width="5" height="5" foreground="cyan" background="white"/>
-        <rectangle text="" x="0" y="20" width="5" height="5" foreground="cyan" background="white"/>
-        <rectangle text="" x="0" y="30" width="5" height="5" foreground="cyan" background="white"/>
-        <rectangle text="" x="0" y="40" width="5" height="5" foreground="cyan" background="white"/>
+        <rectangle text="" x="0" y="0" width="5" height="5" foreground="cyan" background="white">
+            <text>
+                <text2 blah="Hi"/>
+            </text>
+        </rectangle>
+        <rectangle text="" x="0" y="10" width="5" height="5" foreground="cyan" background="white">
+            <text>
+                <text2 blah="Hi"/>
+            </text>
+        </rectangle>
+        <rectangle text="" x="0" y="20" width="5" height="5" foreground="cyan" background="white">
+            <text>
+                <text2 blah="Hi"/>
+            </text>
+        </rectangle>
+        <rectangle text="" x="0" y="30" width="5" height="5" foreground="cyan" background="white">
+            <text>
+                <text2 blah="Hi"/>
+            </text>
+        </rectangle>
+        <rectangle text="" x="0" y="40" width="5" height="5" foreground="cyan" background="white">
+            <text>
+                <text2 blah="Hi"/>
+            </text>
+        </rectangle>
         <text text="Hello!" x="0" y="0" width="5" height="5" foreground="blue" background="white"/>
         <text text=" Welcome" x="0" y="10" width="5" height="5" foreground="blue" background="white"/>
         <text text=" to " x="0" y="20" width="5" height="5" foreground="blue" background="white"/>

@@ -11,5 +11,5 @@ TEST_CASE("writeDoc", "writedoc")
 }
 TEST_CASE("openDoc", "opendoc")
 {
-	printText("Hi, welcome to terminal_commander!\n", 6, 1, 2);
+	//printText("Hi, welcome to terminal_commander!\n", 6, 20, 20);
 }

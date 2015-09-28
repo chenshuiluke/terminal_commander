@@ -29,11 +29,11 @@ public:
 
 		foreground = element->Attribute("foreground") != 0 ? element->Attribute("foreground") : "";
 		background = element->Attribute("background") != 0 ? element->Attribute("background") : "";
-		text = element->Attribute("background") != 0 ? element->Attribute("background") : "";
+		text = element->Attribute("text") != 0 ? element->Attribute("text") : "";
 	}
 	void display()
 	{
-		std::cout << x << ' ' << y << ' ' << foreground << ' ' << background << ' ' << width << ' ' << height << endl;
+		std::cout << x << ' ' << y << ' ' << foreground << ' ' << background << ' ' << width << ' ' << height << " " <<text << endl;
 	}
 };
 #endif
