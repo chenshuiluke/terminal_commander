@@ -108,13 +108,11 @@ void printText(char * text, int colour, int x, int y)
 	changeIntToColor(colour);
 	cout << text << termcolor::reset;
 }
-int count = 0;
 void createElementLayers(XMLElement * element)
 {
 	layerNum++;
 	while(element)
 	{
-		count++;
 		TuiXMLElement TuiElement(element);
 	//	TuiElement.display();
 		cout << layerNum << endl;
