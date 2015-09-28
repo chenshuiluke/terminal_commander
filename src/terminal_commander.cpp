@@ -5,6 +5,39 @@ using namespace std;
 using namespace tinyxml2;
 using namespace rlutil;
 tinyxml2::XMLDocument doc;
+inline void changeIntToColor(int color)
+{
+	switch(color)
+	{
+		case 0:
+			cout << termcolor::grey;
+		break;
+		case 1:
+			cout << termcolor::red;
+		break;
+		case 2:
+			cout << termcolor::green;
+		break;
+		case 3:
+			cout << termcolor::yellow;
+		break;
+		case 4:
+			cout << termcolor::blue;
+		break;
+		case 5:
+			cout << termcolor::magenta;
+		break;
+		case 6:
+			cout << termcolor::cyan;
+		break;
+		case 7:
+			cout << termcolor::white;
+		break;
+		default:
+			cout << termcolor::white;
+	}
+}
+
 int openDoc(char * fileName)
 {
 	if(doc.LoadFile(fileName) == XML_NO_ERROR)
@@ -30,7 +63,13 @@ int testWriteDoc(char * fileName)
 void printText(char * text, int colour, int x, int y)
 {
 	locate(x,y);
-	int previousColour = BLACK;
-	setColor(colour);
-	cout << text;
+	changeIntToColor(colour);
+	cout << text << termcolor::reset;
+
+
+}
+
+void start()
+{
+	cls();
 }

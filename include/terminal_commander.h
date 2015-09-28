@@ -6,4 +6,5 @@
 int openDoc(char * fileName);
 int testWriteDoc(char * fileName);
 void printText(char * text, int colour, int x, int y);
+void start();
 #endif

@@ -6,9 +6,10 @@
 char testFile[] = "temp";
 TEST_CASE("writeDoc", "writedoc")
 {
+	start();
 	REQUIRE(testWriteDoc(testFile) == 0);
 }
 TEST_CASE("openDoc", "opendoc")
 {
-	printText("hi", rlutil::WHITE, 1, 2);
+	printText("Hi, welcome to terminal_commander!\n", 6, 1, 2);
 }
