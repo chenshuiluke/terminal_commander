@@ -1,10 +1,15 @@
 #include "terminal_commander.h"
 #include <stdio.h>
-#include "rlutil.h"
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
 
-using namespace rlutil;
+#ifdef __gnu_linux__
+	#include <ncurses.h>
+#else
+#ifdef _WIN32
+	#include <curses.h>
+#endif
+#endif
 
 inline void changeStringToColour(string color)
 {
@@ -52,14 +57,14 @@ void drawRectangle(TuiXMLElement element)
 	int y = element.y;
 	changeStringToColour(element.foreground);
 	changeStringToBackgroundColour(element.background);
-	locate(x, y);
+	//locate(x, y);
 	for(int counter = 0; counter <= width; counter++)
 	{
 		for(int counter1 = 0; counter1 <= height; counter1++)
 		{
 			printf(" ");
 		}
-		locate(x, y++);
+		//locate(x, y++);
 	}
 	cout << termcolor::reset;
 }

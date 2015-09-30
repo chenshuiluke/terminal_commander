@@ -1,5 +1,4 @@
 #include "terminal_commander.h"
-#include "rlutil.h"
 #include "termcolor.hpp"
 #include "TuiXMLElement.h"
 #include "draw.hpp"
@@ -8,7 +7,6 @@
 
 using namespace std;
 using namespace tinyxml2;
-using namespace rlutil;
 
 tinyxml2::XMLDocument doc;
 vector<TuiXMLElement> layer;
@@ -116,7 +114,7 @@ int testWriteDoc(string fileName)
 }
 void printText(char * text, int colour, int x, int y)
 {
-	locate(x,y);
+	//locate(x,y);
 	changeIntToColor(colour);
 	cout << text << termcolor::reset;
 }
@@ -163,7 +161,7 @@ int parseDoc()
 
 void start()
 {
-	cls();
+//	cls();
 	openDoc("ui.tuixml");
 	switch(parseDoc())
 	{
