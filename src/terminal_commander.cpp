@@ -1,5 +1,4 @@
 #include "terminal_commander.h"
-#include "termcolor.hpp"
 #include "TuiXMLElement.h"
 #include "draw.hpp"
 #include <stdlib.h>
@@ -8,43 +7,19 @@
 using namespace std;
 using namespace tinyxml2;
 
+#ifdef __gnu_linux__
+	#include <ncurses.h>
+#else
+#ifdef _WIN32
+	#include <curses.h>
+#endif
+#endif
+
 tinyxml2::XMLDocument doc;
 vector<TuiXMLElement> layer;
 vector<vector<TuiXMLElement>> layers;
 int layerNum = 0;
 
-inline void changeIntToColor(int color)
-{
-	switch(color)
-	{
-		case 0:
-			cout << termcolor::grey;
-		break;
-		case 1:
-			cout << termcolor::red;
-		break;
-		case 2:
-			cout << termcolor::green;
-		break;
-		case 3:
-			cout << termcolor::yellow;
-		break;
-		case 4:
-			cout << termcolor::blue;
-		break;
-		case 5:
-			cout << termcolor::magenta;
-		break;
-		case 6:
-			cout << termcolor::cyan;
-		break;
-		case 7:
-			cout << termcolor::white;
-		break;
-		default:
-			cout << termcolor::white;
-	}
-}
 
 int openDoc(string fileName)
 {
@@ -112,12 +87,6 @@ int testWriteDoc(string fileName)
 	return temp.SaveFile(fileName.c_str());
 
 }
-void printText(char * text, int colour, int x, int y)
-{
-	//locate(x,y);
-	changeIntToColor(colour);
-	cout << text << termcolor::reset;
-}
 void createElementLayers(XMLElement * element)
 {
 	layerNum++;
@@ -162,6 +131,7 @@ int parseDoc()
 void start()
 {
 //	cls();
+	initscr();
 	openDoc("ui.tuixml");
 	switch(parseDoc())
 	{

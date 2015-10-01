@@ -1,6 +1,5 @@
 #include "terminal_commander.h"
 #include <stdio.h>
-#include "termcolor.hpp"
 #include "TuiXMLElement.h"
 
 #ifdef __gnu_linux__
@@ -11,43 +10,61 @@
 #endif
 #endif
 
-inline void changeStringToColour(string color)
+inline void changeStringToColour(string foregroundColour, string backgroundColour)
 {
-			if(color == "grey")
-			cout << termcolor::grey;
-			if(color == "red")
-			cout << termcolor::red;
-			if(color == "green")
-			cout << termcolor::green;
-			if(color == "yellow")
-			cout << termcolor::yellow;
-			if(color == "blue")
-			cout << termcolor::blue;
-			if(color == "magenta")
-			cout << termcolor::magenta;
-			if(color == "cyan")
-			cout << termcolor::cyan;
-			if(color == "white")
-			cout << termcolor::white;
-}
-inline void changeStringToBackgroundColour(string color)
-{
-			if(color == "grey")
-			cout << termcolor::on_grey;
-			if(color == "red")
-			cout << termcolor::on_red;
-			if(color == "green")
-			cout << termcolor::on_green;
-			if(color == "yellow")
-			cout << termcolor::on_yellow;
-			if(color == "blue")
-			cout << termcolor::on_blue;
-			if(color == "magenta")
-			cout << termcolor::on_magenta;
-			if(color == "cyan")
-			cout << termcolor::on_cyan;
-			if(color == "white")
-			cout << termcolor::on_white;
+			int foreground = -1;
+			int background = -1;
+
+			static int set = 0;
+
+			if(!set)
+			{
+				if(foregroundColour == "black")
+					foreground = COLOR_BLACK;
+				if(foregroundColour == "red")
+					foreground = COLOR_RED;
+				if(foregroundColour == "green")
+					foreground = COLOR_GREEN;
+				if(foregroundColour == "yellow")
+					foreground = COLOR_YELLOW;
+				if(foregroundColour == "blue")
+					foreground = COLOR_BLUE;
+				if(foregroundColour == "magenta")
+					foreground = COLOR_MAGENTA;
+				if(foregroundColour == "cyan")
+					foreground = COLOR_CYAN;
+				if(foregroundColour == "white")
+					foreground = COLOR_WHITE;
+
+				if(backgroundColour == "black")
+					background = COLOR_BLACK;
+				if(backgroundColour == "red")
+					background = COLOR_RED;
+				if(backgroundColour == "green")
+					background = COLOR_GREEN;
+				if(backgroundColour == "yellow")
+					background = COLOR_YELLOW;
+				if(backgroundColour == "blue")
+					background = COLOR_BLUE;
+				if(backgroundColour == "magenta")
+					background = COLOR_MAGENTA;
+				if(backgroundColour == "cyan")
+					background = COLOR_CYAN;
+				if(backgroundColour == "white")
+					background = COLOR_WHITE;
+					
+				if(foreground >= 0 && background >= 0)
+				{
+					init_pair(1, foreground, background);
+					attron(COLOR_PAIR(1));
+					set = !set;
+				}
+			}
+			else
+			{
+				attroff(COLOR_PAIR(1));
+				set = !set;
+			}
 }
 void drawRectangle(TuiXMLElement element)
 {
@@ -55,8 +72,7 @@ void drawRectangle(TuiXMLElement element)
 	int height = element.height;
 	int x = element.x;
 	int y = element.y;
-	changeStringToColour(element.foreground);
-	changeStringToBackgroundColour(element.background);
+	changeStringToColour(element.foreground, element.background);
 	//locate(x, y);
 	for(int counter = 0; counter <= width; counter++)
 	{
@@ -66,7 +82,7 @@ void drawRectangle(TuiXMLElement element)
 		}
 		//locate(x, y++);
 	}
-	cout << termcolor::reset;
+	changeStringToColour(element.foreground, element.background);
 }
 void draw(TuiXMLElement element)
 {
