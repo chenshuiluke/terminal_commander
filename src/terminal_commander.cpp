@@ -132,6 +132,9 @@ void start()
 {
 //	cls();
 	initscr();
+	start_color();
+	setvbuf(stdout, NULL, _IONBF, 0);
+ 	scrollok(stdscr, TRUE);
 	openDoc("ui.tuixml");
 	switch(parseDoc())
 	{
@@ -150,4 +153,5 @@ void start()
 			//layers[counter][counter1].display();
 		}
 	}
+	endwin();
 }

@@ -1,0 +1,14 @@
+Build started at 2015-10-01T23:44:57.904665
+Python binary: /usr/bin/python3
+Python system: Linux
+The Meson build system
+Version: 0.26.0
+Source dir: /home/luke/git/terminal_commander
+Build dir: /home/luke/git/terminal_commander/build
+Build type: native build
+Build machine cpu: x86_64
+Project name: terminal_commander
+Native cpp compiler: c++ (gcc 5.2.0)
+Found pkg-config: /usr/bin/pkg-config (0.28)
+Dependency pdcurses found: NO
+Build targets in project: 2

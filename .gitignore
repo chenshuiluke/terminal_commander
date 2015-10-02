@@ -7,3 +7,4 @@ bin/*
 *ghc*
 ui.xml
 unit_test
+build/*

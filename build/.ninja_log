@@ -1,0 +1,24 @@
+# ninja log v5
+0	263	0	build.ninja	f62fbf8aacb2aaf0
+0	297	0	terminal_commander@sha/src_TuiXMLElement.cpp.o	fb95959a470f36af
+0	435	0	terminal_commander@sha/src_tinyxml2.cpp.o	316fa18582ac8814
+0	265	0	build.ninja	650b8db4d835ee30
+0	409	0	terminal_commander@sha/src_TuiXMLElement.cpp.o	3027acbc452d42c6
+0	541	0	terminal_commander@sha/src_tinyxml2.cpp.o	445844b7d7002990
+0	632	0	terminal_commander@sha/src_terminal_commander.cpp.o	c71bbf88cbe78c8
+632	731	0	libterminal_commander.so	7edff0a08fa69ebf
+0	251	0	build.ninja	650b8db4d835ee30
+0	415	0	terminal_commander@sta/src_tinyxml2.cpp.o	108f869a642cc34a
+0	455	0	terminal_commander@sta/src_TuiXMLElement.cpp.o	1f0a404e82b37376
+0	648	0	terminal_commander@sta/src_terminal_commander.cpp.o	1780a5e51e61c7d7
+648	666	0	libterminal_commander.a	276c5e652dff9fdf
+0	255	0	build.ninja	650b8db4d835ee30
+0	271	0	unit_test@exe/src_unit_test.cpp.o	327c44f10b2d0fcf
+0	283	0	build.ninja	650b8db4d835ee30
+0	278	0	build.ninja	650b8db4d835ee30
+0	279	0	build.ninja	650b8db4d835ee30
+0	333	0	terminal_commander@sta/src_TuiXMLElement.cpp.o	20af7ba28dc006fc
+0	526	0	terminal_commander@sta/src_tinyxml2.cpp.o	f059b7a5f58ea426
+0	673	0	terminal_commander@sta/src_terminal_commander.cpp.o	9a850e142c594132
+673	693	0	libterminal_commander.a	276c5e652dff9fdf
+693	770	0	unit_test	f8ab1dc28c493b87

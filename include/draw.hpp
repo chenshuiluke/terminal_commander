@@ -52,7 +52,7 @@ inline void changeStringToColour(string foregroundColour, string backgroundColou
 					background = COLOR_CYAN;
 				if(backgroundColour == "white")
 					background = COLOR_WHITE;
-					
+
 				if(foreground >= 0 && background >= 0)
 				{
 					init_pair(1, foreground, background);
@@ -73,14 +73,14 @@ void drawRectangle(TuiXMLElement element)
 	int x = element.x;
 	int y = element.y;
 	changeStringToColour(element.foreground, element.background);
+	//cout << element.foreground << '\t' << element.background << endl;
 	//locate(x, y);
 	for(int counter = 0; counter <= width; counter++)
 	{
 		for(int counter1 = 0; counter1 <= height; counter1++)
 		{
-			printf(" ");
+			addch('x');
 		}
-		//locate(x, y++);
 	}
 	changeStringToColour(element.foreground, element.background);
 }
