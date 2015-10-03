@@ -14,6 +14,7 @@ inline void changeStringToColour(string foregroundColour, string backgroundColou
 {
 			int foreground = -1;
 			int background = -1;
+			static int lastColourPair = 1;
 
 			static int set = 0;
 
@@ -55,9 +56,10 @@ inline void changeStringToColour(string foregroundColour, string backgroundColou
 
 				if(foreground >= 0 && background >= 0)
 				{
-					init_pair(1, foreground, background);
-					attron(COLOR_PAIR(1));
+					init_pair(lastColourPair, foreground, background);
+					attron(COLOR_PAIR(lastColourPair));
 					set = !set;
+					lastColourPair++;
 				}
 			}
 			else
@@ -75,13 +77,16 @@ void drawRectangle(TuiXMLElement element)
 	changeStringToColour(element.foreground, element.background);
 	//cout << element.foreground << '\t' << element.background << endl;
 	//locate(x, y);
-	for(int counter = 0; counter <= width; counter++)
+	move(y, x);
+	for(int counter = 0; counter < width; counter++)
 	{
-		for(int counter1 = 0; counter1 <= height; counter1++)
+		for(int counter1 = 0; counter1 < height; counter1++)
 		{
-			addch('x');
+			printw(" ");
 		}
+		move(y+counter, x);
 	}
+	refresh();
 	changeStringToColour(element.foreground, element.background);
 }
 void draw(TuiXMLElement element)

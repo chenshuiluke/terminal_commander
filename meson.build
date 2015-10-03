@@ -1,7 +1,7 @@
 project('terminal_commander', 'cpp')
 
 lib_inc_dir = include_directories('include')
-add_global_arguments('-std=c++11', language:'cpp')
+add_global_arguments('-std=c++11', '-g', language:'cpp')
 
 ncurses = dependency('ncurses', required : false)
 if ncurses.found()

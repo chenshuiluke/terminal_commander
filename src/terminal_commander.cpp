@@ -3,6 +3,7 @@
 #include "draw.hpp"
 #include <stdlib.h>
 #include <time.h>
+#include <unistd.h>
 
 using namespace std;
 using namespace tinyxml2;
@@ -128,7 +129,7 @@ int parseDoc()
 	createElementLayers(temp);
 }
 
-void start()
+void start() //Make this accept a string parameter
 {
 //	cls();
 	initscr();
@@ -150,8 +151,13 @@ void start()
 		for(int counter1 = 0; counter1 < layers[counter].size(); counter1++)
 		{
 			draw(layers[counter][counter1]);
+			usleep(10000);
 			//layers[counter][counter1].display();
 		}
 	}
+	getch();
+	getch();
+	getch();
+	getch();
 	endwin();
 }
