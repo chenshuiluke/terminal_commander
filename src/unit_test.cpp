@@ -9,7 +9,5 @@ char testFile[] = "ui.tuixml";
 int main()
 {
 	int temp = testWriteDoc(testFile);
-	printf("Hi");
 	start();
-	printf("Hi");
 }

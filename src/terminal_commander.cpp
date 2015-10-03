@@ -44,9 +44,9 @@ int testWriteDoc(string fileName)
 		srand (time(NULL));
 		for(int counter1 = 0, x = 0; counter1 < 9; x+=15, counter1++ )
 		{
-			string colours[] = {"grey", "red", "green", "blue", "magenta", "cyan", "white"};
-			int background = rand() % 7;
-			int foreground = rand() % 7;
+			string colours[] = {"black", "red", "green", "blue", "magenta", "cyan", "white"};
+			int background = rand() % 6 + 1;
+			int foreground = rand() % 6 + 1;
 			char yString[5] = {'\0'};
 			char xString[5] = {'\0'};
 			sprintf(yString,"%d", y);
@@ -155,9 +155,6 @@ void start() //Make this accept a string parameter
 			//layers[counter][counter1].display();
 		}
 	}
-	getch();
-	getch();
-	getch();
 	getch();
 	endwin();
 }
