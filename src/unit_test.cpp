@@ -9,5 +9,6 @@ char testFile[] = "ui.tuixml";
 int main()
 {
 	int temp = testWriteDoc(testFile);
-	start();
+	start(testFile);
+	return 0;
 }

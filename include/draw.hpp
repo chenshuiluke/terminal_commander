@@ -64,13 +64,13 @@ inline void changeStringToColour(string foregroundColour, string backgroundColou
 			}
 			else
 			{
-				attroff(COLOR_PAIR(1));
+//				attroff(COLOR_PAIR(1));
 				set = !set;
 			}
 }
 void drawRectangle(TuiXMLElement element)
 {
-	int width = element.width+1;
+	int width = element.width;
 	int height = element.height;
 	int x = element.x;
 	int y = element.y;
@@ -78,9 +78,9 @@ void drawRectangle(TuiXMLElement element)
 	//cout << element.foreground << '\t' << element.background << endl;
 	//locate(x, y);
 	move(y, x);
-	for(int counter = 0; counter < width; counter++)
+	for(int counter = 0; counter < height; counter++)
 	{
-		for(int counter1 = 0; counter1 < height; counter1++)
+		for(int counter1 = 0; counter1 < width; counter1++)
 		{
 			printw(" ");
 		}
@@ -89,9 +89,52 @@ void drawRectangle(TuiXMLElement element)
 	refresh();
 	changeStringToColour(element.foreground, element.background);
 }
+void drawText(TuiXMLElement element)
+{
+	int width = element.width;
+	int height = element.height;
+	int x = element.x;
+	int y = element.y;
+	int stringPos = 0;
+	changeStringToColour(element.foreground, element.background);
+	move(y,x);
+	for(int counter = 0; counter < height; counter++)
+	{
+		for(int counter1 = 0; counter1 < width; counter1++)
+		{
+			if(stringPos < element.text.length())
+			{
+				if(stringPos > 1)
+				{
+					/*
+					to prevent segfaulting from dividing by zero
+					and anything % 1 = 0, so we make sure that never happens
+					also, width % stringPos == 0 would have produced 0.xx if the
+					stringPos > width, which would've rounded down to 0.
+					Therefor, we only check to see if
+					*/
+
+					if(width % stringPos < 1 && stringPos >= width)
+					{
+						if(counter <1)
+						move(y+1, x);
+						else
+						move(y+counter, x);
+					}
+				}
+				printw("%c", element.text[stringPos]);
+				stringPos++;
+				refresh();
+			}
+		}
+	}
+	changeStringToColour(element.foreground, element.background);
+}
 void draw(TuiXMLElement element)
 {
 		if(element.name == "rectangle")
 			drawRectangle(element);
+		else if(element.name == "text")
+			drawText(element);
 		return;
 }

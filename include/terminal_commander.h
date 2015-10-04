@@ -8,5 +8,5 @@
 int openDoc(string fileName);
 int testWriteDoc(string fileName);
 void printText(char * text, int colour, int x, int y);
-void start();
+void start(string fileName);
 #endif

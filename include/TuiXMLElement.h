@@ -29,8 +29,8 @@ public:
 		width = element->QueryIntAttribute("width", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 		height = element->QueryIntAttribute("height", &temp) != XML_NO_ATTRIBUTE ? temp : 0;
 
-		foreground = element->Attribute("foreground") != 0 ? element->Attribute("foreground") : "";
-		background = element->Attribute("background") != 0 ? element->Attribute("background") : "";
+		foreground = element->Attribute("foreground") != 0 ? element->Attribute("foreground") : "white";
+		background = element->Attribute("background") != 0 ? element->Attribute("background") : "black";
 		text = element->Attribute("text") != 0 ? element->Attribute("text") : "";
 	}
 	void display()
