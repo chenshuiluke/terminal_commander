@@ -16,7 +16,9 @@ Requirements:
 
 Steps:
 1. Clone the repository
+
 2. `mkdir build`
+
 3.
 
 	[luke@luke-server terminal_commander]$ meson build
@@ -66,4 +68,5 @@ Steps:
 	  int temp = testWriteDoc(testFile);
 	      ^
 	[7/7] Linking target unit_test
+
 5. `./unit_test`
