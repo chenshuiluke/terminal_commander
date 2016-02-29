@@ -62,5 +62,4 @@ Steps:
 	  int temp = testWriteDoc(testFile);
 	      ^
 	[7/7] Linking target unit_test
-
 5. `./unit_test`
