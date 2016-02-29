@@ -17,10 +17,8 @@ Requirements:
 Steps:
 1. Clone the repository
 
-2. `mkdir build`
-
-3.
-
+2.
+	[luke@luke-server terminal_commander]$ mkdir build
 	[luke@luke-server terminal_commander]$ meson build
 	The Meson build system
 	Version: 0.29.0
@@ -36,7 +34,7 @@ Steps:
 	Build targets in project: 2
 	[luke@luke-server terminal_commander]$ 
 
-4.
+3.
 
 	[luke@luke-server terminal_commander]$ cd build
 	[luke@luke-server build]$ ninja
@@ -69,4 +67,5 @@ Steps:
 	      ^
 	[7/7] Linking target unit_test
 
-5. `./unit_test`
+	[luke@luke-server terminal_commander]$ ./unit_test
+
