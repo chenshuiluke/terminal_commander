@@ -1,3 +1,5 @@
+![terminal_commander gif](http://imgur.com/CdhH0bj)
+
 terminal_commander is a C++ library that tries to make TUIs from XML files. It's not particularly functional at this point, but it's at a point where it kinda looks cool :)
 
 #Building 
