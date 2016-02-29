@@ -18,7 +18,7 @@ Steps:
 
 1. Clone the repository
 
-2.
+2. Initialize meson
 
 	[luke@luke-server terminal_commander]$ mkdir build
 	[luke@luke-server terminal_commander]$ meson build
@@ -36,7 +36,7 @@ Steps:
 	Build targets in project: 2
 	[luke@luke-server terminal_commander]$ 
 
-3.
+3. compile and run unit tests
 
 	[luke@luke-server terminal_commander]$ cd build
 	[luke@luke-server build]$ ninja
