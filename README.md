@@ -15,9 +15,11 @@ Requirements:
 3. ncurses/pdcurses
 
 Steps:
+
 1. Clone the repository
 
 2.
+
 	[luke@luke-server terminal_commander]$ mkdir build
 	[luke@luke-server terminal_commander]$ meson build
 	The Meson build system
